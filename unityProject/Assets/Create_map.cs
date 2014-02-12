@@ -15,9 +15,13 @@ public class Create_map : MonoBehaviour {
 		{
 			for(int j = 0; j<Columns;j++)
 			{
-				Vector3 Pos = new Vector3(j*TileSize,0,i*TileSize)*ScrollAccel;
+				//create a position for the tile
+				Vector3 Pos = new Vector3(j*TileSize,0,i*TileSize);
+				//make a new game object from a prefab
 				GameObject TempTile = (GameObject)Instantiate(Tile);
+				//move it to the predetermined position
 				TempTile.transform.Translate(Pos);
+				//add it to our array for easy access
 				Tiles[i*j + j] = TempTile;
 			}
 		}
