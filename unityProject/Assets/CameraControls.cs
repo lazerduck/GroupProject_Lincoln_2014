@@ -9,9 +9,19 @@ public class CameraControls : MonoBehaviour {
 	float MouseAccel = 0.01f;
 	float TexWidth = 0.03f;
 	float XSpeed = 0.3f;
+	float Margin = 0.01f;
+	public int Columns = 0;
+	public float Size;
+	float Spacer = 3;
+	Create_map Map;
 	void Start () {
+		Map = CameraObj.GetComponent<Create_map>();
+		Columns = Map.Columns;
+		Size = Map.TileSize;
+		Margin = 0.01f;
 		Screen.lockCursor = true;
 		TexWidth = (float)CursorObj.texture.width/(float)Screen.width*2;
+		CameraObj.transform.Translate((float)(Columns/2)*(Size),0,0);
 	}
 	
 	// Update is called once per frame
@@ -33,14 +43,27 @@ public class CameraControls : MonoBehaviour {
 		//left
 		if(CursorObj.transform.position.x <TexWidth)
 		{
-			CameraObj.transform.Translate(-XSpeed,0,0);
+
 			CursorObj.transform.position = new Vector3(TexWidth,CursorObj.transform.position.y);
+		}
+		if(CursorObj.transform.position.x <TexWidth+ Margin)
+		{
+			if(CameraObj.transform.position.x > 0+Spacer)
+			{
+				CameraObj.transform.Translate(-XSpeed,0,0);
+			}
 		}
 		//right
 		if(CursorObj.transform.position.x > 1+TexWidth)
 		{
-			CameraObj.transform.Translate(XSpeed,0,0);
 			CursorObj.transform.position = new Vector3(1+TexWidth,CursorObj.transform.position.y);
+		}
+		if(CursorObj.transform.position.x > 1+TexWidth - Margin)
+		{
+			if(CameraObj.transform.position.x < Columns*Size - Spacer)
+			{
+				CameraObj.transform.Translate(XSpeed,0,0);
+			}
 		}
 		//top
 		if(CursorObj.transform.position.y <TexWidth)

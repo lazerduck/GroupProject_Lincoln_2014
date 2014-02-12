@@ -4,12 +4,14 @@ using System.Collections;
 public class Create_map : MonoBehaviour {
 
 	public GameObject Tile;
-	public static int Rows = 5;
-	public static int Columns = 10;
+	public int Rows = 7;
+	public int Columns = 100;
 	public float TileSize;
-	GameObject [] Tiles = new GameObject[Rows*Columns];
+	GameObject [] Tiles;
+
 
 	void Start () {
+		Tiles = new GameObject[Rows*Columns];
 		TileSize = 1.1f;
 		for(int i = 0; i<Rows;i++)
 		{
