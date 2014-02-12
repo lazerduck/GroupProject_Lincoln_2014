@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Create_map.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CameraControls.cs">
     <Files>
-      <File FileName="Assets\Create_map.cs" Line="8" Column="32" />
+      <File FileName="Assets\Create_map.cs" Line="10" Column="34" />
+      <File FileName="Assets\CameraControls.cs" Line="24" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
