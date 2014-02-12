@@ -6,11 +6,11 @@ public class Create_map : MonoBehaviour {
 	public GameObject Tile;
 	public static int Rows = 5;
 	public static int Columns = 10;
-	public float TileSize = 1.5f;
-	public float ScrollAccel = 1.5f;
+	public float TileSize;
 	GameObject [] Tiles = new GameObject[Rows*Columns];
 
 	void Start () {
+		TileSize = 1.1f;
 		for(int i = 0; i<Rows;i++)
 		{
 			for(int j = 0; j<Columns;j++)
