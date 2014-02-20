@@ -100,7 +100,7 @@ public class CameraControls : MonoBehaviour {
 			Ray ray = Camera.main.ViewportPointToRay(mousepos);
 
 			if (Physics.Raycast (ray,out hit,100f)){
-				hit.transform.Translate(0,1,0);
+				hit.transform.gameObject.SendMessage("IncreasePollution",0.1f);
 			}
 		}
 	}

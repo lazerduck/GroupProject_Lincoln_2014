@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BlockControl.cs" />
      <Compile Include="Assets\CameraControls.cs" />
      <Compile Include="Assets\Create_map.cs" />
   </ItemGroup>
