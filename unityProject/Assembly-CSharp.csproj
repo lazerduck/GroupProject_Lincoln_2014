@@ -49,6 +49,7 @@
      <Compile Include="Assets\BlockControl.cs" />
      <Compile Include="Assets\CameraControls.cs" />
      <Compile Include="Assets\Create_map.cs" />
+     <Compile Include="Assets\GuiScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

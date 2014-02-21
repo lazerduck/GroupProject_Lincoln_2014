@@ -27,7 +27,10 @@ public class BlockControl : MonoBehaviour {
 			this.gameObject.renderer.material = Tex2;
 		}
 	}
-
+	void mousepos(bool state)
+	{
+		BuiltOn = true;
+	}
 	void IncreasePollution(float Increase)
 	{
 		PollutionLevel += Increase;
