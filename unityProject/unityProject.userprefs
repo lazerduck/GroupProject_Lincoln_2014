@@ -1,13 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CameraControls.cs">
-    <Files>
-      <File FileName="Assets\GuiScript.cs" Line="13" Column="40" />
-      <File FileName="Assets\BlockControl.cs" Line="32" Column="18" />
-      <File FileName="Assets\Create_map.cs" Line="23" Column="57" />
-      <File FileName="Assets\CameraControls.cs" Line="13" Column="29" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
