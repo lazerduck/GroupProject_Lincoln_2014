@@ -140,7 +140,18 @@ public class CameraControls : MonoBehaviour {
 			if(ClickTest(GuiObject,MousePosition))
 			{
 				Clicked = true;
-				Debug.Log("clicked");
+					//added
+				if (GUIButtons.ButtonToggle == false)
+					{
+						GUIButtons.ButtonToggle = true;
+						Debug.Log("true");
+					}
+					else 
+					{
+						GUIButtons.ButtonToggle = false;
+						Debug.Log("false");
+					}
+				
 				BuildPlace.Add((GameObject)Instantiate(Building));
 			}
 			else
