@@ -1,9 +1,16 @@
 ﻿<Properties>
+<<<<<<< HEAD
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="K:\Toaster of the heavens\Assets\Scripts\CharacterControl.js">
+    <Files>
+      <File FileName="K:\Toaster of the heavens\Assets\Scripts\CharacterControl.js" Line="16" Column="2" />
+=======
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GUIButtons.cs">
     <Files>
       <File FileName="Assets\CameraControls.cs" Line="149" Column="11" />
       <File FileName="Assets\GUIButtons.cs" Line="51" Column="11" />
+>>>>>>> e74643a621291f69e8215343477c2446de4cfdd3
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

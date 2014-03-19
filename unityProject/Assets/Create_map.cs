@@ -7,12 +7,12 @@ public class Create_map : MonoBehaviour {
 	public int Rows = 7;
 	public int Columns = 100;
 	public float TileSize;
-	GameObject [] Tiles;
+	public GameObject [] Tiles;
 
 
 	void Start () {
 		Tiles = new GameObject[Rows*Columns];
-		TileSize = 1.1f;
+		TileSize = 1f;
 		for(int i = 0; i<Rows;i++)
 		{
 			for(int j = 0; j<Columns;j++)
