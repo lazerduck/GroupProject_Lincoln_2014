@@ -46,15 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BlockControl.cs" />
-     <Compile Include="Assets\CameraControls.cs" />
-     <Compile Include="Assets\Create_map.cs" />
-     <Compile Include="Assets\GUIButtons.cs" />
-     <Compile Include="Assets\GuiScript.cs" />
      <Compile Include="Assets\MainMenu.cs" />
-     <Compile Include="Assets\NPC.cs" />
-     <Compile Include="Assets\NPCControl.cs" />
-     <Compile Include="Assets\PauseMenu.cs" />
+     <Compile Include="Assets\scripts\BlockControl.cs" />
+     <Compile Include="Assets\scripts\CameraControls.cs" />
+     <Compile Include="Assets\scripts\Create_map.cs" />
+     <Compile Include="Assets\scripts\GUIButtons.cs" />
+     <Compile Include="Assets\scripts\GuiScript.cs" />
+     <Compile Include="Assets\scripts\NPC.cs" />
+     <Compile Include="Assets\scripts\NPCControl.cs" />
+     <Compile Include="Assets\scripts\PauseMenu.cs" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
   </ItemGroup>
   <ItemGroup>

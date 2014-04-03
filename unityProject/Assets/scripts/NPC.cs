@@ -5,7 +5,7 @@ public class NPC : MonoBehaviour
 {
 
 
-    Create_map Map;
+    public Create_map Map;
     //camera object
     public GameObject CameraObj;
     //store the size of the map
@@ -34,13 +34,20 @@ public class NPC : MonoBehaviour
         {
             calcNextGoal();
         }
+        //if they go off the beach
+        if (this.transform.position.z < 0)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 0);
+        }
+        if (this.transform.position.z > MapRows*Map.TileSize)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, MapRows*Map.TileSize);
+        }
     }
     void calcNextGoal()
     {
         GoalPos.x = Random.Range(0, MapColumns);
         GoalPos.z = Random.Range(0, MapRows);
         GoalPos.y = 1;
-        Debug.Log("goal");
-        Debug.Log(GoalPos);
     }
 }

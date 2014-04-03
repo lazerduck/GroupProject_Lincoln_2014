@@ -12,30 +12,21 @@ public class CameraControls : MonoBehaviour
     public GameObject Building;
     //building placer
     public List<GameObject> BuildPlace = new List<GameObject>();
-    //width of the texture
-    float TexWidth = 0.03f;
     //speed scrolling in x
     float XSpeed = 0.3f;
-    //margin for scrolling
-    float Margin = 0.01f;
-    //has the button been clicked
-    bool Clicked;
     //columns imported from create map
     public int Columns = 0;
     //size of tiles
     public float Size;
-    //distance the end of the map is from the center
-    float Spacer = 3;
     //instance of the create map
     Create_map Map;
     Vector3 MouseClick;
     void Start()
     {
-        Clicked = false;
+
         Map = CameraObj.GetComponent<Create_map>();
         Columns = Map.Columns;
-        Size = Map.TileSize;
-        Margin = 0.01f;
+        Size = Map.TileSize;;
         CameraObj.transform.Translate((float)(Columns / 2) * (Size), 0, 0);
 
     }

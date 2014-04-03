@@ -4,12 +4,14 @@ using System.Collections;
 public class NPCControl : MonoBehaviour {
 
 	// Use this for initialization
-    public GameObject npc;
+    public Queue npcs;
+    public Object npc;
 	void Start () {
 
-            for (int x = 0; x < 100; x++)
+            for (int x = 0; x < 20; x++)
             {
-                GameObject cube = (GameObject)Instantiate(npc);
+                GameObject cube = (GameObject)GameObject.Instantiate(npc);
+                //npcs.Enqueue(cube);
             }
         
 	}
