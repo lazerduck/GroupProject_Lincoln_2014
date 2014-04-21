@@ -24,7 +24,7 @@ public class CameraControls : MonoBehaviour
     void Start()
     {
 
-        Map = CameraObj.GetComponent<Create_map>();
+        Map = this.GetComponent<Create_map>();
         Columns = Map.Columns;
         Size = Map.TileSize;;
         CameraObj.transform.Translate((float)(Columns / 2) * (Size), 0, 0);
@@ -44,23 +44,41 @@ public class CameraControls : MonoBehaviour
 		//Mouse controls
 		float scrollWheel = Input.GetAxis ("Mouse ScrollWheel");
 		scrollWheel = -scrollWheel*4;
+		if (scrollWheel < 0 && CameraObj.transform.position.y < 1) {
+			scrollWheel = 0;
+		}
+		if (scrollWheel >0 && CameraObj.transform.position.y > 10) {
+			scrollWheel = 0;
+		}
 		CameraObj.transform.Translate(new Vector3(0, 0.4f*scrollWheel, -0.6f*scrollWheel));
 		//keyboard controls
         if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A))
         {
+			if(CameraObj.transform.position.x >3)
+			{
             CameraObj.transform.Translate(new Vector3(-XSpeed, 0, 0));
+			}
         }
 		if (Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.D))
         {
+			if(CameraObj.transform.position.x < Map.Columns -3)
+			{
             CameraObj.transform.Translate(new Vector3(XSpeed, 0, 0));
+			}
         }
 		if (Input.GetKey(KeyCode.UpArrow)|| Input.GetKey(KeyCode.W))
         {
+			if(CameraObj.transform.position.y > 1)
+			{
 			CameraObj.transform.Translate(new Vector3(0, -0.2f, 0.3f));
+			}
         }
 		if (Input.GetKey(KeyCode.DownArrow)|| Input.GetKey(KeyCode.S))
         {
+			if(CameraObj.transform.position.y < 10)
+			{
 			CameraObj.transform.Translate(new Vector3(0, 0.2f, -0.3f));
+			}
         }
         float aspect = Screen.width / Screen.height;
 		//get polution level

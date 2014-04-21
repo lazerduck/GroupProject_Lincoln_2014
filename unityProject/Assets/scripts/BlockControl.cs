@@ -5,6 +5,7 @@ public class BlockControl : MonoBehaviour {
 
 	public float PollutionLevel;
 	bool BuiltOn;
+	bool pier;
 	public Material Tex1;
 	public Material Tex2;
 	void Start () {

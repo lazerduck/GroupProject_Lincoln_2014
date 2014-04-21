@@ -13,8 +13,16 @@ public class NPC : MonoBehaviour
     int MapRows;
     //where we want to go
     Vector3 GoalPos;
+	//should we leave
 	bool goHome = false;
+	//what speed to travel
 	float speed = 2;
+	//needs
+	float foodNeed = 0;
+	float LitterNeed = 0;
+	bool litter = false;
+	float clenlinessNeed = 0;
+	float polTollerance;
     void Start()
     {
         //get the size
@@ -23,13 +31,13 @@ public class NPC : MonoBehaviour
         MapRows = Map.Rows;
         this.gameObject.transform.position = new Vector3(0, 1, 0);
         calcNextGoal();
+		polTollerance = Random.Range (1, 10);
     }
 
     // Update is called once per frame
     void Update()
     {
 		//idling
-
 			this.rigidbody.velocity = new Vector3 (0, 0, 0);
 			this.transform.position = Vector3.MoveTowards (this.transform.position, GoalPos, speed * Time.deltaTime);
 			this.transform.position = new Vector3 (this.transform.position.x, 1, this.transform.position.z);
@@ -53,6 +61,26 @@ public class NPC : MonoBehaviour
         {
             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, MapRows*Map.TileSize);
         }
+		//sort out needs
+		foodNeed += Time.deltaTime / 10;
+		if (litter) {
+			LitterNeed += Time.deltaTime;
+			if(LitterNeed > 10)
+			{
+				//drop litter
+				litter = false;
+			}
+		}
+		//get polution level
+		float pollution  = Map.polution/ Map.Columns*Map.Rows;
+		if(pollution > polTollerance)
+		{
+			clenlinessNeed += Time.deltaTime;
+		}
+		if(clenlinessNeed > 10)
+		{
+			leave();
+		}
     }
     void calcNextGoal()
     {
