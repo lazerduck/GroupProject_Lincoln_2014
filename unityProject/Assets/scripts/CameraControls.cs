@@ -37,30 +37,35 @@ public class CameraControls : MonoBehaviour
         //Movement//
         /*on pc we can use the arrows to move and zoom
          *as well as some mouse control
-         *on mobile we will need sliders 
+         *on mobile we will need sliders
+         *or perhaps swiping
          */
         //calculate the aspect ratio
-        if (Input.GetKey(KeyCode.LeftArrow))
+		//Mouse controls
+		float scrollWheel = Input.GetAxis ("Mouse ScrollWheel");
+		scrollWheel = -scrollWheel*4;
+		CameraObj.transform.Translate(new Vector3(0, 0.4f*scrollWheel, -0.6f*scrollWheel));
+		//keyboard controls
+        if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A))
         {
-            Debug.Log("pressed");
             CameraObj.transform.Translate(new Vector3(-XSpeed, 0, 0));
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+		if (Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.D))
         {
-            Debug.Log("pressed");
             CameraObj.transform.Translate(new Vector3(XSpeed, 0, 0));
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+		if (Input.GetKey(KeyCode.UpArrow)|| Input.GetKey(KeyCode.W))
         {
-            Debug.Log("pressed");
-            CameraObj.transform.Translate(new Vector3(0, 0.2f, -0.3f));
+			CameraObj.transform.Translate(new Vector3(0, -0.2f, 0.3f));
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+		if (Input.GetKey(KeyCode.DownArrow)|| Input.GetKey(KeyCode.S))
         {
-            Debug.Log("pressed");
-            CameraObj.transform.Translate(new Vector3(0, -0.2f, 0.3f));
+			CameraObj.transform.Translate(new Vector3(0, 0.2f, -0.3f));
         }
         float aspect = Screen.width / Screen.height;
+		//get polution level
+		Create_map tempMap = this.gameObject.GetComponent<Create_map>();
+		//Debug.Log (tempMap.polution);
     }
 
 	private bool ClickTest(GUITexture Button, Vector2 MousePos)

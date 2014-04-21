@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Create_map : MonoBehaviour {
 
@@ -7,12 +8,12 @@ public class Create_map : MonoBehaviour {
 	public int Rows;
 	public int Columns;
 	public float TileSize;
-	public GameObject [] Tiles;
+	public List<GameObject>Tiles = new List<GameObject> ();
+	public float polution = 0;
 
 	void Start () {
         Rows = 10;
         Columns = 100;
-		Tiles = new GameObject[Rows*Columns];
 		TileSize = 1f;
 		for(int i = 0; i<Rows;i++)
 		{
@@ -25,13 +26,18 @@ public class Create_map : MonoBehaviour {
 				//move it to the predetermined position
 				TempTile.transform.Translate(Pos);
 				//add it to our array for easy access
-				Tiles[i*j + j] = TempTile;
+				Tiles.Add(TempTile);
 			}
 		}
+
 	}
 
 
 	void Update () {
-	
+		polution = 0;
+		foreach (GameObject t in Tiles) {
+			BlockControl temp = t.GetComponent<BlockControl>();
+			polution += temp.PollutionLevel;
+		}
 	}
 }

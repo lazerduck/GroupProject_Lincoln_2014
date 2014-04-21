@@ -1,23 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NPCControl : MonoBehaviour {
 
 	// Use this for initialization
-    public Queue npcs;
+	public List<GameObject> npcs = new List<GameObject> ();
     public Object npc;
+	int currNpc = 0;
+	public int totalNpc = 20;
+	float timer = 0f;
+	float waitTime = 1;
 	void Start () {
-
-            for (int x = 0; x < 20; x++)
-            {
-                GameObject cube = (GameObject)GameObject.Instantiate(npc);
-                //npcs.Enqueue(cube);
-            }
         
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		timer += Time.deltaTime;
+		if (timer > waitTime) {
+			GameObject npcTemp = (GameObject)Instantiate(npc);
+			npcs.Add(npcTemp);
+			currNpc++;
+			timer = 0;
+			waitTime = Random.Range(1,10);
+		}
+		if (currNpc > totalNpc) {
+			npcs[0].SendMessage("leave");
+			npcs.RemoveAt(0);
+			currNpc --;
+		}
 	}
 }

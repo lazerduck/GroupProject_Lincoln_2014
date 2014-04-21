@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BlockControl : MonoBehaviour {
 
-	float PollutionLevel;
+	public float PollutionLevel;
 	bool BuiltOn;
 	public Material Tex1;
 	public Material Tex2;
@@ -26,6 +26,7 @@ public class BlockControl : MonoBehaviour {
 		{
 			this.gameObject.renderer.material = Tex2;
 		}
+		PollutionLevel += 0.0001f;
 	}
 	void mousepos(bool state)
 	{

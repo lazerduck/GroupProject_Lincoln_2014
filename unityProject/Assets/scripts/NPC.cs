@@ -13,7 +13,8 @@ public class NPC : MonoBehaviour
     int MapRows;
     //where we want to go
     Vector3 GoalPos;
-
+	bool goHome = false;
+	float speed = 2;
     void Start()
     {
         //get the size
@@ -27,11 +28,20 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.rigidbody.velocity = new Vector3(0, 0, 0);
-        this.transform.position = Vector3.MoveTowards(this.transform.position, GoalPos, 2 * Time.deltaTime);
-        this.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
+		//idling
+
+			this.rigidbody.velocity = new Vector3 (0, 0, 0);
+			this.transform.position = Vector3.MoveTowards (this.transform.position, GoalPos, speed * Time.deltaTime);
+			this.transform.position = new Vector3 (this.transform.position.x, 1, this.transform.position.z);
+		if (goHome) {
+			GoalPos = new Vector3(0,0,4);
+		}
         if(Vector3.Distance(this.transform.position, GoalPos) < 3)
         {
+			if(goHome)
+			{
+				Destroy(this.gameObject);
+			}
             calcNextGoal();
         }
         //if they go off the beach
@@ -49,5 +59,10 @@ public class NPC : MonoBehaviour
         GoalPos.x = Random.Range(0, MapColumns);
         GoalPos.z = Random.Range(0, MapRows);
         GoalPos.y = 1;
+		speed = (float)(Random.Range (10, 30)/10f);
     }
+	void leave()
+	{
+		goHome = true;
+	}
 }
