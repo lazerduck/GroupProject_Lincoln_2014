@@ -39,6 +39,7 @@ public class NPC : MonoBehaviour
     {
 		//idling
 			this.rigidbody.velocity = new Vector3 (0, 0, 0);
+		this.transform.LookAt (GoalPos);
 			this.transform.position = Vector3.MoveTowards (this.transform.position, GoalPos, speed * Time.deltaTime);
 			this.transform.position = new Vector3 (this.transform.position.x, 1, this.transform.position.z);
 		if (goHome) {

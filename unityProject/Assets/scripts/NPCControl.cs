@@ -6,8 +6,9 @@ public class NPCControl : MonoBehaviour {
 
 	// Use this for initialization
 	public List<GameObject> npcs = new List<GameObject> ();
-    public Object npc;
+    public Object[] npc = new Object[11];
 	int currNpc = 0;
+	int prevNPC = 0;
 	public int totalNpc = 20;
 	float timer = 0f;
 	float waitTime = 1;
@@ -19,7 +20,14 @@ public class NPCControl : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 		if (timer > waitTime) {
-			GameObject npcTemp = (GameObject)Instantiate(npc);
+			int num = Random.Range(0,11);
+			while(num == prevNPC)
+			{
+				num = Random.Range(0,11);
+			}
+			prevNPC = num;
+			Debug.Log(num);
+			GameObject npcTemp = (GameObject)Instantiate(npc[num]);
 			npcs.Add(npcTemp);
 			currNpc++;
 			timer = 0;
