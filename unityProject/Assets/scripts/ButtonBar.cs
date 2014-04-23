@@ -77,7 +77,7 @@ public class ButtonBar : MonoBehaviour
 		bool ShowButtonBarWindow = false;
 		bool ShowInfomationWindow = false;
 		bool ShowHelpWindow = false;
-		bool ShowOpctionsWindow = false;
+		bool ShowOptionWindow = false;
 	bool LockUI = false;
 	#endregion
 	#region Button selection
@@ -91,14 +91,14 @@ public class ButtonBar : MonoBehaviour
 		//buttons
 		public Rect ToggleButtonWindowPostion = new Rect (0, 0, 0, 0);
 		public Rect helpButtonWindowPostion = new Rect (0, 0, 0, 0);
-		public Rect OpctionsButtonWindowPostion = new Rect (0, 0, 0, 0);
+		public Rect OptionButtonWindowPostion = new Rect (0, 0, 0, 0);
 	#endregion
 	#region Windows
 		//windows
 		public Rect ButtonWindowPostion = new Rect (0, 0, 0, 0);
 		public Rect helpWindowPostion = new Rect (0, 0, 0, 0);
 		public Rect InfomationWindowPostion = new Rect (0, 0, 0, 0);
-		public Rect OpctionsWindowPostion = new Rect (0, 0, 0, 0);
+		public Rect OptionWindowPostion = new Rect (0, 0, 0, 0);
 	#endregion
 	#endregion
 	#region Text Field in info window
@@ -126,12 +126,12 @@ public class ButtonBar : MonoBehaviour
 				ToggleButtonWindowPostion = new Rect (10, 465, 40, 70);
 				ButtonWindowPostion = new Rect (100, 465, 370, 70);
 			helpButtonWindowPostion = new Rect (Screen.width-60, Screen.height * 0.005f, 50, 50);
-			OpctionsButtonWindowPostion = new Rect (Screen.width-120, Screen.height * 0.005f, 50, 50);
+			OptionButtonWindowPostion = new Rect (Screen.width-120, Screen.height * 0.005f, 50, 50);
 				#endregion
 				#region Windows
 				helpWindowPostion = new Rect (Screen.width * 0.5f - 300, Screen.height * 0.2f, 600, 250);
 				InfomationWindowPostion = new Rect (Screen.width * 0.5f - 300, Screen.height * 0.2f, 600, 250);
-				OpctionsWindowPostion = new Rect (Screen.width * 0.5f - 300, Screen.height * 0.2f, 600, 250);
+				OptionWindowPostion = new Rect (Screen.width * 0.5f - 300, Screen.height * 0.2f, 600, 250);
 				#endregion
 				#endregion	
 		}
@@ -152,7 +152,7 @@ public class ButtonBar : MonoBehaviour
 				//GUI.color = new Color( 1, 1, 1, 1 );
 		ToggleButtonWindowPostion = CheckBounds (GUI.Window (0, ToggleButtonWindowPostion, ToggleButtonWindow, ""));
 		helpButtonWindowPostion = CheckBounds (GUI.Window (1, helpButtonWindowPostion, HelpButtonWindow, ""));
-		OpctionsButtonWindowPostion = CheckBounds (GUI.Window (2, OpctionsButtonWindowPostion, OpctionsButtonWindow, ""));
+		OptionButtonWindowPostion = CheckBounds (GUI.Window (2, OptionButtonWindowPostion, OptionButtonWindow, ""));
 
 				//buttonbar Window
 				if (ShowButtonBarWindow == true) {
@@ -168,8 +168,8 @@ public class ButtonBar : MonoBehaviour
 			helpWindowPostion = CheckBounds (GUI.Window (5, helpWindowPostion, HelpWindow, "Help"));
 				}
 				//opcions window
-				if (ShowOpctionsWindow == true) {
-			OpctionsWindowPostion = CheckBounds (GUI.Window (6, OpctionsWindowPostion, OpctionsWindow, "Opcions"));
+				if (ShowOptionWindow == true) {
+			OptionWindowPostion = CheckBounds (GUI.Window (6, OptionWindowPostion, OptionWindow, "Options"));
 				}	
 		}
 	
@@ -360,25 +360,25 @@ public class ButtonBar : MonoBehaviour
 
 
 	#region Opction controls
-		private void OpctionsButtonWindow (int id)
+		private void OptionButtonWindow (int id)
 		{
 				if (GUI.Button (new Rect (10, 10, 30, 30), "O")) {
-						ShowOpctionsWindow = !ShowOpctionsWindow;
-						Debug.Log ("Opcions Button Clicked");
+						ShowOptionWindow = !ShowOptionWindow;
+						Debug.Log ("Options Button Clicked");
 				}
 		if (LockUI == false) {
 			GUI.DragWindow ();
 		}
 		}
 
-		private void OpctionsWindow (int id)
+		private void OptionWindow (int id)
 		{
 		if (GUI.Button (new Rect (10, 10, 50, 50), new GUIContent ("Lock"))) {
 			LockUI=!LockUI;					
 		}	
 				GUI.backgroundColor = new Color (0, 0, 0, 0);
-				if (GUI.Button (new Rect (OpctionsWindowPostion.width - 25, 5, 20, 20), CloseButtonTexture)) {
-						ShowOpctionsWindow = !ShowOpctionsWindow;
+				if (GUI.Button (new Rect (OptionWindowPostion.width - 25, 5, 20, 20), CloseButtonTexture)) {
+						ShowOptionWindow = !ShowOptionWindow;
 				}
 
 
