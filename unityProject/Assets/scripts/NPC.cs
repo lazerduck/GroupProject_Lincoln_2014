@@ -23,6 +23,7 @@ public class NPC : MonoBehaviour
 	bool litter = false;
 	float clenlinessNeed = 0;
 	float polTollerance;
+	float tile_size = 0;
 	bool lerp = true;
     void Start()
     {

@@ -1,13 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\NPCControl.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\BuildingControl.cs">
     <Files>
-      <File FileName="Assets\scripts\NPC.cs" Line="77" Column="45" />
+      <File FileName="Assets\scripts\BuildingControl.cs" Line="19" Column="20" />
+      <File FileName="Assets\scripts\NPC.cs" Line="92" Column="11" />
       <File FileName="Assets\scripts\NPCControl.cs" Line="28" Column="18" />
-      <File FileName="Assets\scripts\ButtonBar.cs" Line="321" Column="46" />
+      <File FileName="Assets\scripts\ButtonBar.cs" Line="8" Column="2" />
       <File FileName="Assets\scripts\GUIButtons.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\GuiScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\BuildingControl.cs" Line="19" Column="3" />
+      <File FileName="Assets\scripts\BuildingControl.cs" Line="22" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
