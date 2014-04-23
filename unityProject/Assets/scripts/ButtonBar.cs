@@ -78,6 +78,7 @@ public class ButtonBar : MonoBehaviour
 		bool ShowInfomationWindow = false;
 		bool ShowHelpWindow = false;
 		bool ShowOpctionsWindow = false;
+	bool LockUI = false;
 	#endregion
 	#region Button selection
 		//selection of the bar
@@ -182,7 +183,9 @@ public class ButtonBar : MonoBehaviour
 						Debug.Log ("Main Button Clicked");
 				}
 			
-				GUI.DragWindow (); 
+		if (LockUI == false) {
+			GUI.DragWindow ();
+		}
 		}
 
 		private void ButtonBarWindow (int id)
@@ -211,7 +214,9 @@ public class ButtonBar : MonoBehaviour
 				if (GUI.Button (new Rect (310, 10, 50, 50), new GUIContent (fisheriesIconTexture, "Fisheries"))) {		
 						Logic (6);	
 				}
-				GUI.DragWindow ();
+		if (LockUI == false) {
+						GUI.DragWindow ();
+				}
 		}
 	#endregion 
 
@@ -223,10 +228,22 @@ public class ButtonBar : MonoBehaviour
 				//main image
 
 		
-				GUI.DrawTexture (new Rect (0, 0, 200, 200), clubsMediumTexture, ScaleMode.ScaleToFit, true, 0);
+				//GUI.DrawTexture (new Rect (0, 0, 200, 200), clubsMediumTexture, ScaleMode.ScaleToFit, true, 0);
 
 				buildingSize = GUI.SelectionGrid (new Rect (15, 200, 300, 20), buildingSize, selStrings, 5);
 
+		switch (buildingSize) {
+				case 0:
+			//Small
+						break;
+				case 1:
+			//Medium
+			GUI.DrawTexture (new Rect (0, 0, 200, 200), clubsMediumTexture, ScaleMode.ScaleToFit, true, 0);
+						break;
+				case 2:
+			//Large
+						break;
+				}
 				GUI.Box (new Rect (200, 50, 365, 125), "");
 				GUILayout.BeginArea (new Rect (200, 50, 400, 125));
 				scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (390), GUILayout.Height (125));
@@ -255,7 +272,9 @@ public class ButtonBar : MonoBehaviour
 				if (GUI.Button (new Rect (InfomationWindowPostion.width - 25, 5, 20, 20), CloseButtonTexture)) {
 						ShowInfomationWindow = !ShowInfomationWindow;
 				}
-				GUI.DragWindow ();
+		if (LockUI == false) {
+			GUI.DragWindow ();
+		}
 		}
 	#endregion
 	
@@ -267,7 +286,9 @@ public class ButtonBar : MonoBehaviour
 						ShowHelpWindow = !	ShowHelpWindow;				
 						Debug.Log ("Help Button Clicked");
 				}
-				GUI.DragWindow ();
+		if (LockUI == false) {
+			GUI.DragWindow ();
+		}
 		}
 
 		private void HelpWindow (int id)
@@ -331,7 +352,9 @@ public class ButtonBar : MonoBehaviour
 						ShowHelpWindow = !	ShowHelpWindow;
 				}
 
-				GUI.DragWindow ();
+		if (LockUI == false) {
+			GUI.DragWindow ();
+		}
 		}
 	#endregion
 
@@ -343,16 +366,25 @@ public class ButtonBar : MonoBehaviour
 						ShowOpctionsWindow = !ShowOpctionsWindow;
 						Debug.Log ("Opcions Button Clicked");
 				}
-				GUI.DragWindow ();
+		if (LockUI == false) {
+			GUI.DragWindow ();
+		}
 		}
 
 		private void OpctionsWindow (int id)
 		{
+		if (GUI.Button (new Rect (10, 10, 50, 50), new GUIContent ("Lock"))) {
+			LockUI=!LockUI;					
+		}	
 				GUI.backgroundColor = new Color (0, 0, 0, 0);
 				if (GUI.Button (new Rect (OpctionsWindowPostion.width - 25, 5, 20, 20), CloseButtonTexture)) {
 						ShowOpctionsWindow = !ShowOpctionsWindow;
 				}
-				GUI.DragWindow ();
+
+
+		if (LockUI == false) {
+			GUI.DragWindow ();
+		}
 		}
 	#endregion
 		private void Logic (int CurSelection)
