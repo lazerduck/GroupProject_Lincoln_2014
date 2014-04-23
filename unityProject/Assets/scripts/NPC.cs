@@ -23,6 +23,7 @@ public class NPC : MonoBehaviour
 	bool litter = false;
 	float clenlinessNeed = 0;
 	float polTollerance;
+	bool lerp = true;
     void Start()
     {
         //get the size
@@ -41,7 +42,7 @@ public class NPC : MonoBehaviour
 			this.rigidbody.velocity = new Vector3 (0, 0, 0);
 		this.transform.LookAt (GoalPos);
 			this.transform.position = Vector3.MoveTowards (this.transform.position, GoalPos, speed * Time.deltaTime);
-			this.transform.position = new Vector3 (this.transform.position.x, 1, this.transform.position.z);
+			//this.transform.position = new Vector3 (this.transform.position.x, 1, this.transform.position.z);
 		if (goHome) {
 			GoalPos = new Vector3(0,0,4);
 		}
@@ -81,6 +82,21 @@ public class NPC : MonoBehaviour
 		if(clenlinessNeed > 10)
 		{
 			leave();
+		}
+		//bobbing
+		if (lerp) {
+			this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x,2,this.transform.position.z),0.005f);
+			if(this.transform.position.y > 1.2f)
+			{
+				lerp  = false;
+			}
+		}
+		else {
+			this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x,0,this.transform.position.z),0.005f);
+			if(this.transform.position.y < 1.1f)
+			{
+				lerp  = true;
+			}
 		}
     }
     void calcNextGoal()

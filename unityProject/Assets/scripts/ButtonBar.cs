@@ -117,6 +117,12 @@ public class ButtonBar : MonoBehaviour
 	#endregion
 		public int buildingSize = 0;
 		public string[] selStrings = new string[] {"Small", "Medium", "Large"};
+	//store the building type
+	public int buildingNum = 0;
+	//the building control object
+	public GameObject buildingcont;
+	//has a building been bought?
+	bool buildingBought = false;
 		// Use this for initialization
 		void Start ()
 		{
@@ -298,17 +304,21 @@ public class ButtonBar : MonoBehaviour
 		
 				//previous
 				if (GUI.Button (new Rect (60, 170, 20, 20), "<")) {
-			
+					
 				}
 				//next
 				if (GUI.Button (new Rect (120, 170, 20, 20), ">")) {
-			
+					
 				}
 
 				//small
 		
 				if (GUI.Button (new Rect (300, 190, 200, 40), "Build")) {
-			
+			//buildingSize & buildingNum
+			int []SendNum = new int[2];
+			SendNum[0] = buildingNum;
+			SendNum[1] = buildingSize;
+			buildingcont.SendMessage("Build",SendNum);
 				}
 
 			
@@ -441,7 +451,8 @@ public class ButtonBar : MonoBehaviour
 				} else {
 						OldSelection = CurSelection;
 						ShowInfomationWindow = true;
-
+			//sets the variable that will be passed to the building controller
+			buildingNum = CurSelection;
 						switch (CurSelection) {
 						case 1:
 				//ice cream

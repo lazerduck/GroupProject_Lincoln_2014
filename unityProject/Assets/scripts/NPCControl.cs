@@ -26,7 +26,6 @@ public class NPCControl : MonoBehaviour {
 				num = Random.Range(0,11);
 			}
 			prevNPC = num;
-			Debug.Log(num);
 			GameObject npcTemp = (GameObject)Instantiate(npc[num]);
 			npcs.Add(npcTemp);
 			currNpc++;
