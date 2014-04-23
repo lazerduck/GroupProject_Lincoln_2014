@@ -89,7 +89,7 @@ public class ButtonBar : MonoBehaviour
 		//Size of the window
 	#region Buttons
 		//buttons
-		public Rect ToggleButtonWindowPostion = new Rect (0, 0, 0, 0);
+		public Rect ButtonBarWindowPostion = new Rect (0, 0, 0, 0);
 		public Rect helpButtonWindowPostion = new Rect (0, 0, 0, 0);
 		public Rect OptionButtonWindowPostion = new Rect (0, 0, 0, 0);
 	#endregion
@@ -123,7 +123,7 @@ public class ButtonBar : MonoBehaviour
 	
 				#region sets the size of the differant windows
 				#region Buttons
-				ToggleButtonWindowPostion = new Rect (10, 465, 40, 70);
+				ButtonBarWindowPostion = new Rect (10, 465, 40, 70);
 				ButtonWindowPostion = new Rect (100, 465, 370, 70);
 			helpButtonWindowPostion = new Rect (Screen.width-60, Screen.height * 0.005f, 50, 50);
 			OptionButtonWindowPostion = new Rect (Screen.width-120, Screen.height * 0.005f, 50, 50);
@@ -147,17 +147,17 @@ public class ButtonBar : MonoBehaviour
 				GUI.skin = mySkin;
 
 		//remove these soon ( change to 2 bar 2 images )
-				ToggleButtonWindowPostion = new Rect (ButtonWindowPostion.x - 50, Screen.height - 80, 40, 70);
-				ButtonWindowPostion = new Rect (ToggleButtonWindowPostion.x + 50, ToggleButtonWindowPostion.y, 370, 70);
+				//ButtonBarWindowPostion = new Rect (ButtonWindowPostion.x - 50, Screen.height - 80, 40, 70);
+				//ButtonWindowPostion = new Rect (ButtonBarWindowPostion.x + 50, ButtonBarWindowPostion.y, 370, 70);
 				//GUI.color = new Color( 1, 1, 1, 1 );
-		ToggleButtonWindowPostion = CheckBounds (GUI.Window (0, ToggleButtonWindowPostion, ToggleButtonWindow, ""));
+		ButtonBarWindowPostion = CheckBounds (GUI.Window (0, ButtonBarWindowPostion, ToggleButtonWindow, ""));
 		helpButtonWindowPostion = CheckBounds (GUI.Window (1, helpButtonWindowPostion, HelpButtonWindow, ""));
 		OptionButtonWindowPostion = CheckBounds (GUI.Window (2, OptionButtonWindowPostion, OptionButtonWindow, ""));
 
 				//buttonbar Window
-				if (ShowButtonBarWindow == true) {
-			ButtonWindowPostion = CheckBounds (GUI.Window (3, ButtonWindowPostion, ButtonBarWindow, ""));
-				}
+				//if (ShowButtonBarWindow == true) {
+			//ButtonWindowPostion = CheckBounds (GUI.Window (3, ButtonWindowPostion, ButtonBarWindow, ""));
+			//	}
 				//infomation window
 				if (ShowInfomationWindow == true) {
 			InfomationWindowPostion = CheckBounds (GUI.Window (4, InfomationWindowPostion, InfomationWindow, buildingType));
@@ -179,9 +179,53 @@ public class ButtonBar : MonoBehaviour
 		private void ToggleButtonWindow (int id)
 		{
 				if (GUI.Button (new Rect (10, 10, 20, 50), ">")) {
+			ButtonBarWindowPostion = new Rect (	ButtonBarWindowPostion.x, 	ButtonBarWindowPostion.y, 40, 70);
 						ShowButtonBarWindow = !ShowButtonBarWindow;
 						Debug.Log ("Main Button Clicked");
 				}
+
+		if (ShowButtonBarWindow == true) {
+
+			ButtonBarWindowPostion = new Rect (	ButtonBarWindowPostion.x, 	ButtonBarWindowPostion.y, 410, 70);
+
+			if (GUI.Button (new Rect (50, 10, 50, 50), new GUIContent (icecreamIconTexture, "Ice Cream Shop"))) {
+				Logic (1);					
+			}		
+			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
+
+
+			if (GUI.Button (new Rect (110, 10, 50, 50), new GUIContent (giftIconTexture, "Gift Shop"))) {
+				Logic (2);
+			}		
+			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
+
+
+			if (GUI.Button (new Rect (170, 10, 50, 50), new GUIContent (hotelIconTexture, "Hotel"))) {
+				Logic (3);
+			}		
+			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
+
+
+			if (GUI.Button (new Rect (230, 10, 50, 50), new GUIContent (lifeguardIconTexture, "Lifeguard"))) {
+				Logic (4);
+			}
+			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
+
+
+			if (GUI.Button (new Rect (290, 10, 50, 50), new GUIContent (clubsIconTexture, "Club"))) {
+				Logic (5);
+			}
+			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
+
+
+			if (GUI.Button (new Rect (350, 10, 50, 50), new GUIContent (fisheriesIconTexture, "Fisheries"))) {		
+				Logic (6);	
+			}
+			else{
+
+			}
+		}
+
 			
 		if (LockUI == false) {
 			GUI.DragWindow ();
