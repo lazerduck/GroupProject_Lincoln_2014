@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [ExecuteInEditMode]
 
 public class ButtonBar : MonoBehaviour
 {
+
 	#region Varables
 	#region Number size codes
 		//shops

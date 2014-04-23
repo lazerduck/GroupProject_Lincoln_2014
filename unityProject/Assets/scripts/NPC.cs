@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class NPC : MonoBehaviour
@@ -7,7 +7,7 @@ public class NPC : MonoBehaviour
 
     public Create_map Map;
     //camera object
-    public GameObject CameraObj;
+    GameObject CameraObj;
     //store the size of the map
     int MapColumns;
     int MapRows;
@@ -27,10 +27,13 @@ public class NPC : MonoBehaviour
 	bool lerp = true;
     void Start()
     {
+		CameraObj = GameObject.FindGameObjectWithTag ("theCamera");
         //get the size
         Map = CameraObj.GetComponent<Create_map>();
         MapColumns = Map.Columns;
         MapRows = Map.Rows;
+		tile_size = Map.TileSize;
+		Debug.Log (tile_size);
         this.gameObject.transform.position = new Vector3(0, 1, 0);
         calcNextGoal();
 		polTollerance = Random.Range (1, 10);
@@ -105,6 +108,8 @@ public class NPC : MonoBehaviour
         GoalPos.x = Random.Range(0, MapColumns);
         GoalPos.z = Random.Range(0, MapRows);
         GoalPos.y = 1;
+		GoalPos.x *= tile_size;
+		GoalPos.z *= tile_size;
 		speed = (float)(Random.Range (10, 30)/10f);
     }
 	void leave()

@@ -12,13 +12,14 @@ public class Create_map : MonoBehaviour {
 	public float polution = 0;
 
 	void Start () {
+		TileSize = 3;
         Rows = 10;
         Columns = 100;
-		TileSize = 1f;
 		for(int i = 0; i<Rows;i++)
 		{
 			for(int j = 0; j<Columns;j++)
 			{
+				Debug.Log(TileSize);
 				//create a position for the tile
 				Vector3 Pos = new Vector3(j*TileSize,0,i*TileSize);
 				//make a new game object from a prefab
