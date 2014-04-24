@@ -4,8 +4,10 @@ using System.Collections;
 public class BlockControl : MonoBehaviour {
 
 	public float PollutionLevel;
-	bool BuiltOn;
-	bool pier;
+	public bool BuiltOn;
+	public int type;
+	public int size;
+	public bool pier;
 	public Material Tex1;
 	public Material Tex2;
 	void Start () {

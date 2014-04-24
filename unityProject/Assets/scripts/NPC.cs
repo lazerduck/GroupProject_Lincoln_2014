@@ -85,7 +85,8 @@ public class NPC : MonoBehaviour
 		}
 		if(clenlinessNeed > 10)
 		{
-			leave();
+			//leave();
+			Debug.Log("oh dear");
 		}
 		//bobbing
 		if (lerp) {

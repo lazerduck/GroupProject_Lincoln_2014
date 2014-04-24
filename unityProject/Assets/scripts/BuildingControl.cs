@@ -5,6 +5,7 @@ public class BuildingControl : MonoBehaviour {
 
 	// Use this for initialization
 	public GameObject[] buildings = new GameObject[18];
+	GameObject current;
 	int type = 0;
 	int size = 0;
 	bool building = false;
@@ -23,10 +24,18 @@ public class BuildingControl : MonoBehaviour {
 		foreach (RaycastHit hit in hits) {
 			if (hit.transform.tag == "Space") {
 				build.transform.position = hit.transform.position;
+					current = hit.transform.gameObject;
 			}
 		}
 		if (Input.GetMouseButton (0)) {
-				building = false;
+				BlockControl blockTemp = current.GetComponent<BlockControl>();
+				if(!blockTemp.BuiltOn)
+				{
+					building = false;
+					blockTemp.BuiltOn = true;
+					blockTemp.size = size;
+					blockTemp.type = type;
+				}
 			}
 		}
 	}

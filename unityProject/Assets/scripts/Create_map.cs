@@ -14,7 +14,7 @@ public class Create_map : MonoBehaviour {
 	void Start () {
 		TileSize = 3;
         Rows = 10;
-        Columns = 100;
+        Columns = 33;
 		for(int i = 0; i<Rows;i++)
 		{
 			for(int j = 0; j<Columns;j++)
@@ -26,6 +26,7 @@ public class Create_map : MonoBehaviour {
 				GameObject TempTile = (GameObject)Instantiate(Tile);
 				//move it to the predetermined position
 				TempTile.transform.Translate(Pos);
+				TempTile.transform.localScale = new Vector3(TileSize,0.1f,TileSize);
 				//add it to our array for easy access
 				Tiles.Add(TempTile);
 			}

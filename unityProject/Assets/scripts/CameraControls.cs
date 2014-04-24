@@ -61,7 +61,7 @@ public class CameraControls : MonoBehaviour
         }
 		if (Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.D))
         {
-			if(CameraObj.transform.position.x < Map.Columns -3)
+			if(CameraObj.transform.position.x < Map.Columns*Map.TileSize -3)
 			{
             CameraObj.transform.Translate(new Vector3(XSpeed, 0, 0));
 			}
