@@ -68,6 +68,8 @@ public class ButtonBar : MonoBehaviour
 	public Texture CloseButtonTexture;
 	public Texture RadioOnTexture;
 	public Texture RadioOffTexture;
+	public Texture HelpTexture;
+	public Texture OptionsTexture;
 	#endregion
 	#endregion
 	#region Skin
@@ -330,7 +332,7 @@ public class ButtonBar : MonoBehaviour
 	#region  Help controls
 	private void HelpButtonWindow (int id)
 	{
-		if (GUI.Button (new Rect (10, 10, 30, 30), "H")) {
+		if (GUI.Button (new Rect (10, 10, 30, 30), HelpTexture)) {
 			ShowHelpWindow = !	ShowHelpWindow;				
 			Debug.Log ("Help Button Clicked");
 		}
@@ -569,7 +571,7 @@ public class ButtonBar : MonoBehaviour
 	#region Option controls
 	private void OptionButtonWindow (int id)
 	{
-		if (GUI.Button (new Rect (10, 10, 30, 30), "O")) {
+		if (GUI.Button (new Rect (10, 10, 30, 30), OptionsTexture)) {
 			ShowOptionWindow = !ShowOptionWindow;
 			Debug.Log ("Options Button Clicked");
 		}
