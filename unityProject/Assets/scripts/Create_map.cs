@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Create_map : MonoBehaviour {
-
+	
 	public GameObject Tile;
 	public int Rows;
 	public int Columns;
 	public float TileSize;
 	public List<GameObject>Tiles = new List<GameObject> ();
 	public float polution = 0;
-
+	
 	void Start () {
 		TileSize = 3;
-        Rows = 10;
-        Columns = 33;
+		Rows = 10;
+		Columns = 33;
 		for(int i = 0; i<Rows;i++)
 		{
 			for(int j = 0; j<Columns;j++)
@@ -31,10 +31,10 @@ public class Create_map : MonoBehaviour {
 				Tiles.Add(TempTile);
 			}
 		}
-
+		
 	}
-
-
+	
+	
 	void Update () {
 		polution = 0;
 		foreach (GameObject t in Tiles) {

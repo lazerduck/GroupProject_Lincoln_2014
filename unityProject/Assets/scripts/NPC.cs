@@ -1,74 +1,85 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NPC : MonoBehaviour
 {
-
-
-    public Create_map Map;
-    //camera object
-    GameObject CameraObj;
-    //store the size of the map
-    int MapColumns;
-    int MapRows;
-    //where we want to go
-    Vector3 GoalPos;
+	
+	
+	public Create_map Map;
+	//camera object
+	GameObject CameraObj;
+	//store the size of the map
+	int MapColumns;
+	int MapRows;
+	//where we want to go
+	Vector3 GoalPos;
 	//should we leave
 	bool goHome = false;
 	//what speed to travel
 	float speed = 2;
 	//needs
-	float foodNeed = 0;
+	float iceCreamNeed = 0;
+	float clubNeed = 0;
+	float giftNeed = 0;
 	float LitterNeed = 0;
+	
+	bool needing = false;
 	bool litter = false;
 	float clenlinessNeed = 0;
 	float polTollerance;
 	float tile_size = 0;
 	bool lerp = true;
-    void Start()
-    {
+	public List<GameObject>Tiles;
+	void Start()
+	{
 		CameraObj = GameObject.FindGameObjectWithTag ("theCamera");
-        //get the size
-        Map = CameraObj.GetComponent<Create_map>();
-        MapColumns = Map.Columns;
-        MapRows = Map.Rows;
+		//get the size
+		Map = CameraObj.GetComponent<Create_map>();
+		Tiles = Map.Tiles;
+		MapColumns = Map.Columns;
+		MapRows = Map.Rows;
 		tile_size = Map.TileSize;
 		Debug.Log (tile_size);
-        this.gameObject.transform.position = new Vector3(0, 1, 0);
-        calcNextGoal();
+		this.gameObject.transform.position = new Vector3(0, 1, 0);
+		calcNextGoal();
 		polTollerance = Random.Range (1, 10);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+		
+		//set the start need values and then count down like an action movie
+		iceCreamNeed = Random.Range(5,100);
+		clubNeed = Random.Range (40, 100);
+		giftNeed = Random.Range (60, 100);
+	}
+	
+	// Update is called once per frame
+	void Update()
+	{
 		//idling
-			this.rigidbody.velocity = new Vector3 (0, 0, 0);
+		this.rigidbody.velocity = new Vector3 (0, 0, 0);
 		this.transform.LookAt (GoalPos);
-			this.transform.position = Vector3.MoveTowards (this.transform.position, GoalPos, speed * Time.deltaTime);
-			//this.transform.position = new Vector3 (this.transform.position.x, 1, this.transform.position.z);
+		this.transform.position = Vector3.MoveTowards (this.transform.position, GoalPos, speed * Time.deltaTime);
+		//this.transform.position = new Vector3 (this.transform.position.x, 1, this.transform.position.z);
 		if (goHome) {
 			GoalPos = new Vector3(0,0,4);
 		}
-        if(Vector3.Distance(this.transform.position, GoalPos) < 3)
-        {
+		if(Vector3.Distance(this.transform.position, GoalPos) < 3)
+		{
 			if(goHome)
 			{
 				Destroy(this.gameObject);
 			}
-            calcNextGoal();
-        }
-        //if they go off the beach
-        if (this.transform.position.z < 0)
-        {
-            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 0);
-        }
-        if (this.transform.position.z > MapRows*Map.TileSize)
-        {
-            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, MapRows*Map.TileSize);
-        }
+			calcNextGoal();
+		}
+		//if they go off the beach
+		if (this.transform.position.z < 0)
+		{
+			this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 0);
+		}
+		if (this.transform.position.z > MapRows*Map.TileSize)
+		{
+			this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, MapRows*Map.TileSize);
+		}
 		//sort out needs
-		foodNeed += Time.deltaTime / 10;
 		if (litter) {
 			LitterNeed += Time.deltaTime;
 			if(LitterNeed > 10)
@@ -103,16 +114,43 @@ public class NPC : MonoBehaviour
 				lerp  = true;
 			}
 		}
-    }
-    void calcNextGoal()
-    {
-        GoalPos.x = Random.Range(0, MapColumns);
-        GoalPos.z = Random.Range(0, MapRows);
-        GoalPos.y = 1;
+		//deal with the needs
+		if (!needing) {//if the npc is not needing anything
+			iceCreamNeed -= Time.deltaTime;
+			clubNeed -= Time.deltaTime;
+			giftNeed -= Time.deltaTime;
+		}
+		//check if any of the need timers have run out
+		if (iceCreamNeed < 0) {
+			needing = true;
+			//go to the nearest icecream shop
+		}
+		if (clubNeed < 0) {
+			needing = true;
+			//go to the nearest club
+		}
+		if (giftNeed < 0) {
+			needing = true;
+			//go to the nearest gift shop
+		}
+		
+	}
+	void calcNextGoal()
+	{
+	Start:
+			GoalPos.x = Random.Range(0, MapColumns);
+		GoalPos.z = Random.Range(0, MapRows);
+		int place = (int)(GoalPos.z * MapColumns + GoalPos.x);
+		BlockControl blocktemp = Tiles [place].GetComponent<BlockControl> ();
+		if (blocktemp.BuiltOn) {
+			//hope no one sees this goto 0_0, its a bit lazy, but i am using labels and its all nicely contained in the same function so it should be fine
+			goto Start;
+		}
+		GoalPos.y = 1;
 		GoalPos.x *= tile_size;
 		GoalPos.z *= tile_size;
 		speed = (float)(Random.Range (10, 30)/10f);
-    }
+	}
 	void leave()
 	{
 		goHome = true;
