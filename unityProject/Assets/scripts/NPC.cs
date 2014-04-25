@@ -13,18 +13,18 @@ public class NPC : MonoBehaviour
 	int MapColumns;
 	int MapRows;
 	//where we want to go
-	Vector3 GoalPos;
+	public Vector3 GoalPos;
 	//should we leave
 	bool goHome = false;
 	//what speed to travel
 	float speed = 2;
 	//needs
-	float iceCreamNeed = 0;
-	float clubNeed = 0;
-	float giftNeed = 0;
+	public float iceCreamNeed = 0;
+	public float clubNeed = 0;
+	public float giftNeed = 0;
 	float LitterNeed = 0;
 	
-	bool needing = false;
+	public bool needing = false;
 	bool litter = false;
 	float clenlinessNeed = 0;
 	float polTollerance;
@@ -58,10 +58,11 @@ public class NPC : MonoBehaviour
 		this.transform.LookAt (GoalPos);
 		this.transform.position = Vector3.MoveTowards (this.transform.position, GoalPos, speed * Time.deltaTime);
 		//this.transform.position = new Vector3 (this.transform.position.x, 1, this.transform.position.z);
-		if (goHome) {
+		if (goHome && !needing) {
 			GoalPos = new Vector3(0,0,4);
 		}
 		if (!needing) {
+			Debug.Log("really");
 			if (Vector3.Distance (this.transform.position, GoalPos) < 3) {
 				if (goHome) {
 					Destroy (this.gameObject);
@@ -69,24 +70,29 @@ public class NPC : MonoBehaviour
 				calcNextGoal ();
 			}
 		} else {
-			if (Vector3.Distance (this.transform.position, GoalPos) < Map.TileSize*1.6f) {
-				if(iceCreamNeed<0)
+			Debug.Log(GoalPos.x);
+			if (Vector3.Distance (this.transform.position, GoalPos) < Map.TileSize*2f) {
+				Debug.Log("how");
+				if(iceCreamNeed<=0)
 				{
 					needing = false;
 					calcNextGoal();
-					iceCreamNeed = iceCreamNeed = Random.Range(5,100);
+					iceCreamNeed = Random.Range(5,100);
+					Debug.Log("test");
 				}
-				if(clubNeed<0)
+				if(clubNeed<=0)
 				{
 					needing = false;
 					calcNextGoal();
-					clubNeed = iceCreamNeed = Random.Range(40,100);
+					clubNeed = Random.Range(40,100);
+					Debug.Log("test3");
 				}
-				if(giftNeed<0)
+				if(giftNeed<=0)
 				{
+					Debug.Log("test4");
 					needing = false;
 					calcNextGoal();
-					giftNeed = iceCreamNeed = Random.Range(60,100);
+					giftNeed = Random.Range(60,100);
 				}
 			}
 		}
@@ -143,50 +149,47 @@ public class NPC : MonoBehaviour
 		if (iceCreamNeed < 0) {
 			needing = true;
 			GameObject[] obj = GameObject.FindGameObjectsWithTag("Icecream");
-			GameObject temp = new GameObject();
 			float dist = float.MaxValue;
 			foreach(GameObject g in obj)
 			{
 				if(Vector3.Distance(transform.position,g.transform.position)<dist)
 				{
-					temp = g;
 					dist = Vector3.Distance(transform.position,g.transform.position);
+					GoalPos.x = g.transform.position.x;
+					GoalPos.z = g.transform.position.z;
 				}
 			}
-			GoalPos.x = temp.transform.position.x;
-			GoalPos.z = temp.transform.position.z;
+
 		}
 		if (clubNeed < 0) {
 			needing = true;
 			GameObject[] obj = GameObject.FindGameObjectsWithTag("Club");
-			GameObject temp = new GameObject();
 			float dist = float.MaxValue;
 			foreach(GameObject g in obj)
 			{
 				if(Vector3.Distance(transform.position,g.transform.position)<dist)
 				{
-					temp = g;
 					dist = Vector3.Distance(transform.position,g.transform.position);
+					GoalPos.x = g.transform.position.x;
+					GoalPos.z = g.transform.position.z;
 				}
 			}
-			GoalPos.x = temp.transform.position.x;
-			GoalPos.z = temp.transform.position.z;
+
 		}
 		if (giftNeed < 0) {
 			needing = true;
 			GameObject[] obj = GameObject.FindGameObjectsWithTag("Shop");
-			GameObject temp = new GameObject();
 			float dist = float.MaxValue;
 			foreach(GameObject g in obj)
 			{
 				if(Vector3.Distance(transform.position,g.transform.position)<dist)
 				{
-					temp = g;
 					dist = Vector3.Distance(transform.position,g.transform.position);
+					GoalPos.x = g.transform.position.x;
+					GoalPos.z = g.transform.position.z;
 				}
 			}
-			GoalPos.x = temp.transform.position.x;
-			GoalPos.z = temp.transform.position.z;
+
 		}
 		
 	}
