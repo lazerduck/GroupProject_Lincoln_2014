@@ -9,7 +9,7 @@ public class NPCControl : MonoBehaviour {
     public Object[] npc = new Object[11];
 	int currNpc = 0;
 	int prevNPC = 0;
-	public int totalNpc = 20;
+	public int totalNpc = 50;
 	float timer = 0f;
 	float waitTime = 1;
 	void Start () {

@@ -28,7 +28,7 @@ public class CameraControls : MonoBehaviour
 		Columns = Map.Columns;
 		Size = Map.TileSize;;
 		CameraObj.transform.Translate((float)(Columns / 2) * (Size), 0, 0);
-		
+		Screen.orientation = ScreenOrientation.AutoRotation;
 	}
 	
 	// Update is called once per frame

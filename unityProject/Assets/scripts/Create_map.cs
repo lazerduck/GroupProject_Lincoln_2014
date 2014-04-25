@@ -19,7 +19,6 @@ public class Create_map : MonoBehaviour {
 		{
 			for(int j = 0; j<Columns;j++)
 			{
-				Debug.Log(TileSize);
 				//create a position for the tile
 				Vector3 Pos = new Vector3(j*TileSize,0,i*TileSize);
 				//make a new game object from a prefab

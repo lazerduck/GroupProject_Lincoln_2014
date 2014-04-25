@@ -40,7 +40,6 @@ public class NPC : MonoBehaviour
 		MapColumns = Map.Columns;
 		MapRows = Map.Rows;
 		tile_size = Map.TileSize;
-		Debug.Log (tile_size);
 		this.gameObject.transform.position = new Vector3(0, 1, 0);
 		calcNextGoal();
 		polTollerance = Random.Range (1, 10);
@@ -62,13 +61,34 @@ public class NPC : MonoBehaviour
 		if (goHome) {
 			GoalPos = new Vector3(0,0,4);
 		}
-		if(Vector3.Distance(this.transform.position, GoalPos) < 3)
-		{
-			if(goHome)
-			{
-				Destroy(this.gameObject);
+		if (!needing) {
+			if (Vector3.Distance (this.transform.position, GoalPos) < 3) {
+				if (goHome) {
+					Destroy (this.gameObject);
+				}
+				calcNextGoal ();
 			}
-			calcNextGoal();
+		} else {
+			if (Vector3.Distance (this.transform.position, GoalPos) < Map.TileSize*1.6f) {
+				if(iceCreamNeed<0)
+				{
+					needing = false;
+					calcNextGoal();
+					iceCreamNeed = iceCreamNeed = Random.Range(5,100);
+				}
+				if(clubNeed<0)
+				{
+					needing = false;
+					calcNextGoal();
+					clubNeed = iceCreamNeed = Random.Range(40,100);
+				}
+				if(giftNeed<0)
+				{
+					needing = false;
+					calcNextGoal();
+					giftNeed = iceCreamNeed = Random.Range(60,100);
+				}
+			}
 		}
 		//if they go off the beach
 		if (this.transform.position.z < 0)
@@ -97,7 +117,6 @@ public class NPC : MonoBehaviour
 		if(clenlinessNeed > 10)
 		{
 			//leave();
-			Debug.Log("oh dear");
 		}
 		//bobbing
 		if (lerp) {
@@ -123,15 +142,51 @@ public class NPC : MonoBehaviour
 		//check if any of the need timers have run out
 		if (iceCreamNeed < 0) {
 			needing = true;
-			//go to the nearest icecream shop
+			GameObject[] obj = GameObject.FindGameObjectsWithTag("Icecream");
+			GameObject temp = new GameObject();
+			float dist = float.MaxValue;
+			foreach(GameObject g in obj)
+			{
+				if(Vector3.Distance(transform.position,g.transform.position)<dist)
+				{
+					temp = g;
+					dist = Vector3.Distance(transform.position,g.transform.position);
+				}
+			}
+			GoalPos.x = temp.transform.position.x;
+			GoalPos.z = temp.transform.position.z;
 		}
 		if (clubNeed < 0) {
 			needing = true;
-			//go to the nearest club
+			GameObject[] obj = GameObject.FindGameObjectsWithTag("Club");
+			GameObject temp = new GameObject();
+			float dist = float.MaxValue;
+			foreach(GameObject g in obj)
+			{
+				if(Vector3.Distance(transform.position,g.transform.position)<dist)
+				{
+					temp = g;
+					dist = Vector3.Distance(transform.position,g.transform.position);
+				}
+			}
+			GoalPos.x = temp.transform.position.x;
+			GoalPos.z = temp.transform.position.z;
 		}
 		if (giftNeed < 0) {
 			needing = true;
-			//go to the nearest gift shop
+			GameObject[] obj = GameObject.FindGameObjectsWithTag("Shop");
+			GameObject temp = new GameObject();
+			float dist = float.MaxValue;
+			foreach(GameObject g in obj)
+			{
+				if(Vector3.Distance(transform.position,g.transform.position)<dist)
+				{
+					temp = g;
+					dist = Vector3.Distance(transform.position,g.transform.position);
+				}
+			}
+			GoalPos.x = temp.transform.position.x;
+			GoalPos.z = temp.transform.position.z;
 		}
 		
 	}
@@ -146,7 +201,7 @@ public class NPC : MonoBehaviour
 			//hope no one sees this goto 0_0, its a bit lazy, but i am using labels and its all nicely contained in the same function so it should be fine
 			goto Start;
 		}
-		GoalPos.y = 1;
+		GoalPos.y = 2;
 		GoalPos.x *= tile_size;
 		GoalPos.z *= tile_size;
 		speed = (float)(Random.Range (10, 30)/10f);
