@@ -86,25 +86,26 @@ public class CameraControls : MonoBehaviour
 		//get polution level
 		Create_map tempMap = this.gameObject.GetComponent<Create_map>();
 		//Debug.Log (tempMap.polution);
-		if (Input.touchCount >= 2) {
-			Vector2 touch0, touch1;
-			touch0 = Input.GetTouch (0).position;
-			touch1 = Input.GetTouch (1).position;
-			old_dist = dist;
-			float diff = old_dist - dist;
-			dist = Vector2.Distance (touch0, touch1);
-			if (diff < 0 && CameraObj.transform.position.y < 1) {
-				diff = 0;
-			}
-			if (diff >0 && CameraObj.transform.position.y > 10) {
-				diff = 0;
-			}
+		if (Input.touchCount == 2) {
+			Touch t0 = Input.GetTouch(0);
+			Touch t1 = Input.GetTouch(1);
+			Vector2 t0prev = t0.position - t0.deltaPosition;
+			Vector2 t1prev = t1.position - t1.deltaPosition;
+			float prevtouchmag = (t0prev - t1prev).magnitude;
+			float touchmag = (t0.position - t1.position).magnitude;
+			float diff = (prevtouchmag - touchmag);
+
+//			if (diff < 0 && CameraObj.transform.position.y < 1) {
+//				diff = 0;
+//			}
+//			if (diff >0 && CameraObj.transform.position.y > 10) {
+//				diff = 0;
+//			}
 			CameraObj.transform.Translate(new Vector3(0, 0.4f*diff, -0.6f*diff));
 		} else {
 			dist = 0;
 			old_dist = 0;
 		}
-						
 	}
 	
 	private bool ClickTest(GUITexture Button, Vector2 MousePos)
