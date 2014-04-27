@@ -23,7 +23,8 @@ public class NPC : MonoBehaviour
 	public float clubNeed = 0;
 	public float giftNeed = 0;
 	float LitterNeed = 0;
-	
+	//trash no
+	int trashNum = -1;
 	public bool needing = false;
 	bool litter = false;
 	float clenlinessNeed = 0;
@@ -31,6 +32,13 @@ public class NPC : MonoBehaviour
 	float tile_size = 0;
 	bool lerp = true;
 	public List<GameObject>Tiles;
+	//trash
+	//0 -4  club
+	//5 -7  shop
+	//7     hotel
+	//8 -10 Icecream
+	//11-13 fishery
+	public GameObject [] trash = new GameObject[14];
 	void Start()
 	{
 		CameraObj = GameObject.FindGameObjectWithTag ("theCamera");
@@ -71,7 +79,7 @@ public class NPC : MonoBehaviour
 			}
 		} else {
 			Debug.Log(GoalPos.x);
-			if (Vector3.Distance (this.transform.position, GoalPos) < Map.TileSize*2f) {
+			if (Vector3.Distance (this.transform.position, GoalPos) < Map.TileSize) {
 				Debug.Log("how");
 				if(iceCreamNeed<=0)
 				{
@@ -150,6 +158,11 @@ public class NPC : MonoBehaviour
 			needing = true;
 			GameObject[] obj = GameObject.FindGameObjectsWithTag("Icecream");
 			float dist = float.MaxValue;
+			if (obj.Length == 0)
+			{
+				leave = true;
+			}else
+			{
 			foreach(GameObject g in obj)
 			{
 				if(Vector3.Distance(transform.position,g.transform.position)<dist)
@@ -159,12 +172,17 @@ public class NPC : MonoBehaviour
 					GoalPos.z = g.transform.position.z;
 				}
 			}
-
+			}
 		}
 		if (clubNeed < 0) {
 			needing = true;
 			GameObject[] obj = GameObject.FindGameObjectsWithTag("Club");
 			float dist = float.MaxValue;
+			if (obj.Length == 0)
+			{
+				leave = true;
+			}else
+			{
 			foreach(GameObject g in obj)
 			{
 				if(Vector3.Distance(transform.position,g.transform.position)<dist)
@@ -174,12 +192,17 @@ public class NPC : MonoBehaviour
 					GoalPos.z = g.transform.position.z;
 				}
 			}
-
+			}
 		}
 		if (giftNeed < 0) {
 			needing = true;
 			GameObject[] obj = GameObject.FindGameObjectsWithTag("Shop");
 			float dist = float.MaxValue;
+			if (obj.Length == 0)
+			{
+				leave = true;
+			}else
+			{
 			foreach(GameObject g in obj)
 			{
 				if(Vector3.Distance(transform.position,g.transform.position)<dist)
@@ -189,7 +212,7 @@ public class NPC : MonoBehaviour
 					GoalPos.z = g.transform.position.z;
 				}
 			}
-
+			}
 		}
 		
 	}

@@ -141,15 +141,21 @@ public class ButtonBar : MonoBehaviour
 	public GameObject buildingcont;
 	//has a building been bought?
 	bool buildingBought = false;
-	
+
+	//totals
+	int coins  = 0;
+	int epoint = 0;
+	float polution = 0;
 	
 	//MapPosistion
 	public float ScrollMap;
+	//map instance
+	Create_map map;
 	
 	// Use this for initialization
 	void Start ()
 	{
-		
+		map = this.gameObject.GetComponent <Create_map>();
 		#region sets the size of the differant windows
 		#region Buttons
 		ButtonBarWindowPostion = new Rect (10, 465, 40, 70);
@@ -171,7 +177,10 @@ public class ButtonBar : MonoBehaviour
 	{
 		
 	}
-	
+	void AddMoney(int amount)
+	{
+		coins += amount;
+	}
 	private void OnGUI ()
 	{
 		
@@ -181,9 +190,9 @@ public class ButtonBar : MonoBehaviour
 		
 		#region Labels
 		GUI.Box (new Rect (0, 0, 370, 40), "");
-		GUI.Label (new Rect (10, 10, 150, 20), "Coins : " + "ADD");
-		GUI.Label (new Rect (110, 10, 150, 20), "E-Points : " + "ADD");
-		GUI.Label (new Rect (220, 10, 150, 20), "Polution level : " + "ADD");
+		GUI.Label (new Rect (10, 10, 150, 20), "Coins :" + coins);
+		GUI.Label (new Rect (110, 10, 150, 20), "E-Points : " + epoint);
+		GUI.Label (new Rect (220, 10, 150, 20), "Polution level : " + map.polution);
 		#endregion
 		
 		#region Camera move
