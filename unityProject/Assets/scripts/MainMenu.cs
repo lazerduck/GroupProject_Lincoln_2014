@@ -1,21 +1,36 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 [ExecuteInEditMode]
 public class MainMenu : MonoBehaviour {
-	public bool centerButton = false;
+	public bool centerButton = true;
 	public string levelToload = "GameScn";
-
-	public Rect windowSize = new Rect (0, 0, 250, 90);
-
+	static public int GameSize;
+	 Rect MainWindowSize = new Rect (0, 0, 250, 90);
+	 Rect SecondWindowSize = new Rect (0, 0, 630, 230);
+	bool show = false;
+	//gui Skin
+	public GUISkin mySkin;
 private void OnGUI(){
+		GUI.skin = mySkin;
 
-		windowSize = GUI.Window(0,windowSize, MyWindow, "");
+		if (show == false)
+		{
+		MainWindowSize = GUI.Window(0,MainWindowSize, MyWindow, "");
 
-		if (centerButton) {
-			windowSize.x = (Screen.width * 0.5f)- (windowSize.width * 0.5f);
-			windowSize.y = (Screen.height * 0.5f)- (windowSize.height * 0.5f);
+		if (centerButton == true) {
+			MainWindowSize.x = (Screen.width * 0.5f)- (MainWindowSize.width * 0.5f);
+			MainWindowSize.y = (Screen.height * 0.5f)- (MainWindowSize.height * 0.5f);
 				}
-	
+		}
+		else
+		{
+			SecondWindowSize = GUI.Window(0,SecondWindowSize, PickGameSize, "Please pick a game size");
+			
+			if (centerButton == true) {
+				SecondWindowSize.x = (Screen.width * 0.5f)- (SecondWindowSize.width * 0.5f);
+				SecondWindowSize.y = (Screen.height * 0.5f)- (SecondWindowSize.height * 0.5f);
+			}
+		}
 	}
 
 	private void MyWindow(int id){
@@ -23,10 +38,42 @@ private void OnGUI(){
 		GUILayout.BeginHorizontal ();
 		GUILayout.BeginVertical ();
 		if (GUILayout.Button ("Start Game"))
-			Application.LoadLevel (levelToload);
+		{
+			show = true;
+		}
+
 		if (GUILayout.Button ("Exit Game"))
+		{
 			Application.Quit();
+		}
 		GUILayout.EndVertical ();
 		GUILayout.EndHorizontal ();
 		}
+
+	private void PickGameSize(int id){
+
+		GUILayout.BeginHorizontal ();
+
+		if (GUILayout.Button (  ("Small"), GUILayout.Width(200), GUILayout.Height(200)))
+		{
+			GameSize = 1;
+			Application.LoadLevel (levelToload);
+		}
+
+
+		if (GUILayout.Button ("Medium", GUILayout.Width(200), GUILayout.Height(200)))
+		{
+			GameSize = 2;
+			Application.LoadLevel (levelToload);
+		}
+
+
+		if (GUILayout.Button ("Large", GUILayout.Width(200), GUILayout.Height(200)))
+		{
+			GameSize = 3;
+			Application.LoadLevel (levelToload);
+		}
+		GUILayout.EndHorizontal ();
+
+	}
 }
