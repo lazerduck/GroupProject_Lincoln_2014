@@ -162,6 +162,7 @@ public class ButtonBar : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		coins = 10;
 		map = this.gameObject.GetComponent <Create_map>();
 		#region sets the size of the differant windows
 		#region Buttons
@@ -336,11 +337,15 @@ public class ButtonBar : MonoBehaviour
 		GUI.Label (new Rect (240, 200, 200, 30), "Cost : " + BuildingCost);
 		
 		if (GUI.Button (new Rect (300, 190, 200, 40), "Build")) {
+
+			if (BuildingCost <= coins){
+				coins = coins - BuildingCost;
 			//buildingSize & buildingNum
 			int [] SendNum = new int[2];
 			SendNum [0] = buildingNum;
 			SendNum [1] = buildingSize;
-			buildingcont.SendMessage ("Build", SendNum);
+				buildingcont.SendMessage ("Build", SendNum);
+			}
 		}
 		
 
@@ -872,6 +877,16 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 2:
 				BuildingCost = 3;
+				break;
+			}
+			break;
+			#endregion
+
+			#region  Bin
+		case 7:
+			switch (buildingSize) {
+			case 0:
+				BuildingCost = 1;
 				break;
 			}
 			break;
