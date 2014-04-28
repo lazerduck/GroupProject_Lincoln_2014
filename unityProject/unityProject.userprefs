@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Picker.cs">
     <Files>
-      <File FileName="Assets\scripts\Picker.cs" Line="8" Column="3" />
+      <File FileName="Assets\scripts\NPC.cs" Line="32" Column="2" />
+      <File FileName="Assets\scripts\Picker.cs" Line="86" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
