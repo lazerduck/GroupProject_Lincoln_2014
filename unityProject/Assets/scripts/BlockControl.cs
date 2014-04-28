@@ -17,6 +17,7 @@ public class BlockControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		PollutionLevel = 0;
 		if(BuiltOn)
 		{
 			PollutionLevel = 0;
@@ -29,7 +30,9 @@ public class BlockControl : MonoBehaviour {
 		{
 			this.gameObject.renderer.material = Tex2;
 		}
-		PollutionLevel += 0.0001f;
+		Rect hit = new Rect(this.transform.position.x-0.5f,this.transform.position.y-0.5f,1f,1f);
+		//find all the litter
+
 	}
 	void mousepos(bool state)
 	{

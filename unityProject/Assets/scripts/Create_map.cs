@@ -36,9 +36,14 @@ public class Create_map : MonoBehaviour {
 	
 	void Update () {
 		polution = 0;
-		foreach (GameObject t in Tiles) {
-			BlockControl temp = t.GetComponent<BlockControl>();
-			polution += temp.PollutionLevel;
+//		foreach (GameObject t in Tiles) {
+//			BlockControl temp = t.GetComponent<BlockControl>();
+//			polution += temp.PollutionLevel;
+//		}
+		GameObject[] litter = GameObject.FindGameObjectsWithTag("Litter");
+		foreach(GameObject L in litter)
+		{
+			++polution;
 		}
 	}
 }

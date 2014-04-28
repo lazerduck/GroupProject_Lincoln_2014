@@ -59,9 +59,6 @@
      <Compile Include="Assets\scripts\PauseMenu.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
- <Reference Include="Qubicle.Unite">
- <HintPath>Assets\Qubicle.Unite\Qubicle.Unite.dll</HintPath>
- </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">

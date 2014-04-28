@@ -31,6 +31,7 @@ public class NPC : MonoBehaviour
 	float polTollerance;
 	float tile_size = 0;
 	bool lerp = true;
+	int LitterInHand;
 	public List<GameObject>Tiles;
 	//trash
 	//0 -4  club
@@ -50,7 +51,7 @@ public class NPC : MonoBehaviour
 		tile_size = Map.TileSize;
 		this.gameObject.transform.position = new Vector3(0, 1, 0);
 		calcNextGoal();
-		polTollerance = Random.Range (1, 10);
+		polTollerance = Random.Range (1, 30);
 		
 		//set the start need values and then count down like an action movie
 		iceCreamNeed = Random.Range(5,100);
@@ -70,7 +71,6 @@ public class NPC : MonoBehaviour
 			GoalPos = new Vector3(0,0,4);
 		}
 		if (!needing) {
-			Debug.Log("really");
 			if (Vector3.Distance (this.transform.position, GoalPos) < 3) {
 				if (goHome) {
 					Destroy (this.gameObject);
@@ -78,29 +78,34 @@ public class NPC : MonoBehaviour
 				calcNextGoal ();
 			}
 		} else {
-			Debug.Log(GoalPos.x);
 			if (Vector3.Distance (this.transform.position, GoalPos) < Map.TileSize) {
-				Debug.Log("how");
 				if(iceCreamNeed<=0)
 				{
+					//get trash
+					LitterInHand = Random.Range(8,11);
+					litter = true;
 					needing = false;
 					calcNextGoal();
 					iceCreamNeed = Random.Range(5,100);
-					Debug.Log("test");
+					CameraObj.SendMessage("AddMoney",2);
 				}
 				if(clubNeed<=0)
 				{
+					LitterInHand = Random.Range(0,5);
+					litter = true;
 					needing = false;
 					calcNextGoal();
 					clubNeed = Random.Range(40,100);
-					Debug.Log("test3");
+					CameraObj.SendMessage("AddMoney",5);
 				}
 				if(giftNeed<=0)
 				{
-					Debug.Log("test4");
+					LitterInHand = Random.Range(5,8);
+					litter = true;
 					needing = false;
 					calcNextGoal();
 					giftNeed = Random.Range(60,100);
+					CameraObj.SendMessage("AddMoney",10);
 				}
 			}
 		}
@@ -119,7 +124,11 @@ public class NPC : MonoBehaviour
 			if(LitterNeed > 10)
 			{
 				//drop litter
+				GameObject temp = (GameObject)Instantiate(trash[LitterInHand]);
+				temp.transform.position = new Vector3(this.transform.position.x,0.1f,this.transform.position.z);
 				litter = false;
+				LitterNeed = 0;
+
 			}
 		}
 		//get polution level
@@ -130,7 +139,7 @@ public class NPC : MonoBehaviour
 		}
 		if(clenlinessNeed > 10)
 		{
-			//leave();
+			leave();
 		}
 		//bobbing
 		if (lerp) {
@@ -160,8 +169,9 @@ public class NPC : MonoBehaviour
 			float dist = float.MaxValue;
 			if (obj.Length == 0)
 			{
-				leave = true;
-			}else
+				leave();
+			}
+			else
 			{
 			foreach(GameObject g in obj)
 			{
@@ -180,8 +190,9 @@ public class NPC : MonoBehaviour
 			float dist = float.MaxValue;
 			if (obj.Length == 0)
 			{
-				leave = true;
-			}else
+				leave();
+			}
+			else
 			{
 			foreach(GameObject g in obj)
 			{
@@ -200,8 +211,9 @@ public class NPC : MonoBehaviour
 			float dist = float.MaxValue;
 			if (obj.Length == 0)
 			{
-				leave = true;
-			}else
+				leave();
+			}
+			else
 			{
 			foreach(GameObject g in obj)
 			{
