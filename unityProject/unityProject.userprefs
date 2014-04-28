@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\Fishing-Fury\Assets\Scenes\CompanySummary\CompanySummaryMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Picker.cs">
     <Files>
-      <File FileName="..\..\Fishing-Fury\Assets\Scenes\CompanySummary\CompanySummaryMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Picker.cs" Line="8" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
