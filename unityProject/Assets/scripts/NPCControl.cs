@@ -28,14 +28,14 @@ public class NPCControl : MonoBehaviour {
 			prevNPC = num;
 			GameObject npcTemp = (GameObject)Instantiate(npc[num]);
 			npcs.Add(npcTemp);
-			currNpc++;
+			GameObject[] temp = GameObject.FindGameObjectsWithTag("NPC");
+			currNpc = temp.Length;
 			timer = 0;
 			waitTime = Random.Range(1,10);
 		}
 		if (currNpc > totalNpc) {
 			npcs[0].SendMessage("leave");
 			npcs.RemoveAt(0);
-			currNpc --;
 		}
 	}
 }

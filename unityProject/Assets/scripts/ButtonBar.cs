@@ -70,6 +70,8 @@ public class ButtonBar : MonoBehaviour
 	public Texture RadioOffTexture;
 	public Texture HelpTexture;
 	public Texture OptionsTexture;
+	public Texture BinIconTexture;
+	public Texture DeleteIconTexture;
 	#endregion
 	#endregion
 	#region Skin
@@ -82,6 +84,7 @@ public class ButtonBar : MonoBehaviour
 	bool ShowInfomationWindow = false;
 	bool ShowHelpWindow = false;
 	bool ShowOptionWindow = false;
+	bool RecyclingBin = false;
 	#endregion
 	#region Windows Lock
 	bool LockUI = false;
@@ -107,6 +110,8 @@ public class ButtonBar : MonoBehaviour
 	public Rect ButtonBarWindowPostion = new Rect (0, 0, 0, 0);
 	public Rect helpButtonWindowPostion = new Rect (0, 0, 0, 0);
 	public Rect OptionButtonWindowPostion = new Rect (0, 0, 0, 0);
+	public int DeleteButtonX = 35;
+	public int DeleteButtonY = 35;
 	#endregion
 	#region Windows
 	//windows
@@ -142,6 +147,8 @@ public class ButtonBar : MonoBehaviour
 	//has a building been bought?
 	bool buildingBought = false;
 
+	//building cost
+	public int BuildingCost;
 	//totals
 	int coins  = 0;
 	int epoint = 0;
@@ -158,7 +165,7 @@ public class ButtonBar : MonoBehaviour
 		map = this.gameObject.GetComponent <Create_map>();
 		#region sets the size of the differant windows
 		#region Buttons
-		ButtonBarWindowPostion = new Rect (10, 465, 40, 70);
+		ButtonBarWindowPostion = new Rect (10, 465, 60, 70);
 		ButtonWindowPostion = new Rect (100, 465, 370, 70);
 		helpButtonWindowPostion = new Rect (Screen.width - 60, Screen.height * 0.005f, 50, 50);
 		OptionButtonWindowPostion = new Rect (Screen.width - 120, Screen.height * 0.005f, 50, 50);
@@ -189,14 +196,16 @@ public class ButtonBar : MonoBehaviour
 		#endregion
 		
 		#region Labels
-		GUI.Box (new Rect (0, 0, 370, 40), "");
+		GUI.Box (new Rect (0, 0, 470, 40), "");
 		GUI.Label (new Rect (10, 10, 150, 20), "Coins :" + coins);
 		GUI.Label (new Rect (110, 10, 150, 20), "E-Points : " + epoint);
 		GUI.Label (new Rect (220, 10, 150, 20), "Polution level : " + map.polution);
+		GameObject[] NPCTotal = GameObject.FindGameObjectsWithTag("NPC");
+		GUI.Label (new Rect (350, 10, 150, 20), "Visitors : "+NPCTotal.Length);
 		#endregion
 		
 		#region Camera move
-		ScrollMap = GUI.HorizontalScrollbar (new Rect (Screen.width * 0.6f, Screen.height * 0.9f, 300, 30), ScrollMap, 1.5F, 0.0F, 100.0F);
+		ScrollMap = GUI.HorizontalScrollbar (new Rect (Screen.width * 0.6f, Screen.height * 0.9f, 500, 70), ScrollMap, 5F, 0.0F, 100.0F);
 		
 		Vector3 temp = Camera.main.transform.position;
 		temp.x = ScrollMap;
@@ -231,56 +240,61 @@ public class ButtonBar : MonoBehaviour
 	#region Button bar
 	private void ToggleButtonWindow (int id)
 	{
-		if (GUI.Button (new Rect (10, 10, 20, 50), ">")) {
-			ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 40, 70);
+		if (GUI.Button (new Rect (10, 10, 40, 50), ">")) {
+			ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 60, 70);
 			ShowButtonBarWindow = !ShowButtonBarWindow;
 			Debug.Log ("Main Button Clicked");
 		}
 		
 		if (ShowButtonBarWindow == true) {
 			
-			ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 410, 70);
+			ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 550, 70);
 			
-			if (GUI.Button (new Rect (50, 10, 50, 50), new GUIContent (icecreamIconTexture, "Ice Cream Shop"))) {
+			if (GUI.Button (new Rect (70, 10, 50, 50), new GUIContent (icecreamIconTexture, "Ice Cream Shop"))) {
 				buildingSize = 0;
 				Logic (1);					
 			}		
-			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
+
 			
-			
-			if (GUI.Button (new Rect (110, 10, 50, 50), new GUIContent (giftIconTexture, "Gift Shop"))) {
+			if (GUI.Button (new Rect (130, 10, 50, 50), new GUIContent (giftIconTexture, "Gift Shop"))) {
 				buildingSize = 0;
 				Logic (2);
 			}		
-			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
 			
 			
-			if (GUI.Button (new Rect (170, 10, 50, 50), new GUIContent (hotelIconTexture, "Hotel"))) {
+			if (GUI.Button (new Rect (190, 10, 50, 50), new GUIContent (hotelIconTexture, "Hotel"))) {
 				buildingSize = 0;
 				Logic (3);
 			}		
-			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
 			
 			
-			if (GUI.Button (new Rect (230, 10, 50, 50), new GUIContent (lifeguardIconTexture, "Lifeguard"))) {
+			if (GUI.Button (new Rect (250, 10, 50, 50), new GUIContent (lifeguardIconTexture, "Lifeguard"))) {
 				buildingSize = 0;
 				Logic (4);
 			}
-			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
 			
 			
-			if (GUI.Button (new Rect (290, 10, 50, 50), new GUIContent (clubsIconTexture, "Club"))) {
+			if (GUI.Button (new Rect (310, 10, 50, 50), new GUIContent (clubsIconTexture, "Club"))) {
 				buildingSize = 0;
 				Logic (5);
 			}
-			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
 			
 			
-			if (GUI.Button (new Rect (350, 10, 50, 50), new GUIContent (fisheriesIconTexture, "Fisheries"))) {	
+			if (GUI.Button (new Rect (370, 10, 50, 50), new GUIContent (fisheriesIconTexture, "Fisheries"))) {	
 				buildingSize = 0;
 				Logic (6);	
 			} 
-			GUI.Label (new Rect (70, 40, 100, 40), GUI.tooltip);
+
+			if (GUI.Button (new Rect (420, 10, 50, 50), new GUIContent (BinIconTexture, "Recycling Bin"))) {	
+				buildingSize = 0;
+				Logic (7);	
+			} 
+
+			if (GUI.Button (new Rect (490, 10, 50, 50), new GUIContent (DeleteIconTexture, "Delete"))) {	
+				//Delete
+				//Logic (6);	
+			} 
+			GUI.Label (new Rect (250, 0, 100, 40), GUI.tooltip);
 		}
 		
 		
@@ -296,7 +310,10 @@ public class ButtonBar : MonoBehaviour
 	#region Infomation
 	private void InfomationWindow (int id)
 	{
+		if (RecyclingBin == false){
 		buildingSize = GUI.SelectionGrid (new Rect (15, 200, 300, 20), buildingSize, selStrings, 5);
+		}
+
 		PickImage ();
 		
 		GUI.Box (new Rect (200, 50, 365, 125), "");
@@ -316,7 +333,7 @@ public class ButtonBar : MonoBehaviour
 			
 		}
 		
-		
+		GUI.Label (new Rect (240, 200, 200, 30), "Cost : " + BuildingCost);
 		
 		if (GUI.Button (new Rect (300, 190, 200, 40), "Build")) {
 			//buildingSize & buildingNum
@@ -326,9 +343,10 @@ public class ButtonBar : MonoBehaviour
 			buildingcont.SendMessage ("Build", SendNum);
 		}
 		
-		
+
+
 		GUI.backgroundColor = new Color (0, 0, 0, 0);
-		if (GUI.Button (new Rect (InfomationWindowPostion.width - 25, 5, 20, 20), CloseButtonTexture)) {
+		if (GUI.Button (new Rect (InfomationWindowPostion.width - 40,10, DeleteButtonX, DeleteButtonY), CloseButtonTexture)) {
 			ShowInfomationWindow = !ShowInfomationWindow;
 		}
 		if (LockInfomationUI == false) {
@@ -566,7 +584,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.EndScrollView ();
 		GUILayout.EndArea ();
 		GUI.backgroundColor = new Color (0, 0, 0, 0);
-		if (GUI.Button (new Rect (helpWindowPostion.width - 25, 5, 20, 20), CloseButtonTexture)) {
+		if (GUI.Button (new Rect (helpWindowPostion.width - 40,10, DeleteButtonX, DeleteButtonY), CloseButtonTexture)) {
 			ShowHelpWindow = !	ShowHelpWindow;
 		}
 		
@@ -692,7 +710,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.EndVertical ();
 		
 		GUI.backgroundColor = new Color (0, 0, 0, 0);
-		if (GUI.Button (new Rect (OptionWindowPostion.width - 25, 5, 20, 20), CloseButtonTexture)) {
+		if (GUI.Button (new Rect (OptionWindowPostion.width - 40,10, DeleteButtonX, DeleteButtonY), CloseButtonTexture)) {
 			ShowOptionWindow = !ShowOptionWindow;
 		}
 		
@@ -717,37 +735,43 @@ public class ButtonBar : MonoBehaviour
 				//ice cream
 				buildingType = "Ice Cream Shop";
 				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
-				
+				RecyclingBin = false;
 				break;
 			case 2:
 				//gift shop
 				buildingType = "Gift Shop";
 				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
-				
+				RecyclingBin = false;
 				break;
 			case 3:
 				//hotel
 				buildingType = "Hotel";
 				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
-				
+				RecyclingBin = false;
 				break;
 			case 4:
 				//lifeguard
 				buildingType = "Life Guard";
 				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
-				
+				RecyclingBin = false;
 				break;
 			case 5:
 				//clubs
 				buildingType = "Club";
 				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
-				
+				RecyclingBin = false;
 				break;
 			case 6:
 				//fisheries
 				buildingType = "Fisheries";
 				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
-				
+				RecyclingBin = false;
+				break;
+			case 7:
+				//Bin
+				buildingType = "Recycling Bin";
+				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
+				RecyclingBin = true;
 				break;
 			}
 		}
@@ -760,13 +784,13 @@ public class ButtonBar : MonoBehaviour
 		case 1:
 			switch (buildingSize) {
 			case 0:
-				
+				BuildingCost = 1;
 				break;
 			case 1:
-				
+				BuildingCost = 2;
 				break;
 			case 2:
-				
+				BuildingCost = 3;
 				break;
 			}
 			break;
@@ -776,13 +800,13 @@ public class ButtonBar : MonoBehaviour
 		case 2:
 			switch (buildingSize) {
 			case 0:
-				
+				BuildingCost = 1;
 				break;
 			case 1:
-				
+				BuildingCost = 2;
 				break;
 			case 2:
-				
+				BuildingCost = 3;
 				break;
 			}
 			break;
@@ -792,13 +816,13 @@ public class ButtonBar : MonoBehaviour
 		case 3:
 			switch (buildingSize) {
 			case 0:
-				
+				BuildingCost = 1;
 				break;
 			case 1:
-				
+				BuildingCost = 2;
 				break;
 			case 2:
-				
+				BuildingCost = 3;
 				break;
 			}
 			break;
@@ -808,13 +832,13 @@ public class ButtonBar : MonoBehaviour
 		case 4:
 			switch (buildingSize) {
 			case 0:
-				
+				BuildingCost = 1;
 				break;
 			case 1:
-				
+				BuildingCost = 2;
 				break;
 			case 2:
-				
+				BuildingCost = 3;
 				break;
 			}
 			break;
@@ -824,13 +848,14 @@ public class ButtonBar : MonoBehaviour
 		case 5:
 			switch (buildingSize) {
 			case 0:
-				
+				BuildingCost = 1;
 				break;
 			case 1:
+				BuildingCost = 2;
 				GUI.DrawTexture (new Rect (0, 0, 200, 200), clubsMediumTexture, ScaleMode.ScaleToFit, true, 0);
 				break;
 			case 2:
-				
+				BuildingCost = 3;
 				break;
 			}
 			break;
@@ -840,13 +865,13 @@ public class ButtonBar : MonoBehaviour
 		case 6:
 			switch (buildingSize) {
 			case 0:
-				
+				BuildingCost = 1;
 				break;
 			case 1:
-				
+				BuildingCost = 2;
 				break;
 			case 2:
-				
+				BuildingCost = 3;
 				break;
 			}
 			break;

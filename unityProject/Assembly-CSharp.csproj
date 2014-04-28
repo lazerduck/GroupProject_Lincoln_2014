@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MainMenu.cs" />
      <Compile Include="Assets\scripts\BlockControl.cs" />
      <Compile Include="Assets\scripts\BuildingControl.cs" />
      <Compile Include="Assets\scripts\ButtonBar.cs" />
@@ -54,9 +53,10 @@
      <Compile Include="Assets\scripts\Create_map.cs" />
      <Compile Include="Assets\scripts\GUIButtons.cs" />
      <Compile Include="Assets\scripts\GuiScript.cs" />
+     <Compile Include="Assets\scripts\MainMenu.cs" />
      <Compile Include="Assets\scripts\NPC.cs" />
      <Compile Include="Assets\scripts\NPCControl.cs" />
-     <Compile Include="Assets\scripts\PauseMenu.cs" />
+     <Compile Include="Assets\scripts\WaterPollution.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
   </ItemGroup>
