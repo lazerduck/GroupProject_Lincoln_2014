@@ -24,7 +24,7 @@ public class NPC : MonoBehaviour
 	public float giftNeed = 0;
 	float LitterNeed = 0;
 	//trash no
-	int trashNum = -1;
+
 	public bool needing = false;
 	bool litter = false;
 	float clenlinessNeed = 0;
