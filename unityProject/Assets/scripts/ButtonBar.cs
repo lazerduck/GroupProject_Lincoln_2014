@@ -158,10 +158,12 @@ public class ButtonBar : MonoBehaviour
 	public float ScrollMap;
 	//map instance
 	Create_map map;
-	
+
 	// Use this for initialization
 	void Start ()
 	{
+		//for the 3d camera
+		GameObject.Find ("3D GUI Camera").camera.enabled = false;
 		coins = 10;
 		map = this.gameObject.GetComponent <Create_map>();
 		#region sets the size of the differant windows
@@ -191,7 +193,7 @@ public class ButtonBar : MonoBehaviour
 	}
 	private void OnGUI ()
 	{
-		
+
 		#region Skins and styles
 		GUI.skin = mySkin;
 		#endregion
@@ -311,10 +313,16 @@ public class ButtonBar : MonoBehaviour
 	#region Infomation
 	private void InfomationWindow (int id)
 	{
+
+		GUI.Box (new Rect (0, 0, InfomationWindowPostion.width, InfomationWindowPostion.height), "");
+
 		if (RecyclingBin == false){
 		buildingSize = GUI.SelectionGrid (new Rect (15, 200, 300, 20), buildingSize, selStrings, 5);
 		}
 
+		//for the 3d camera
+		GameObject.Find ("3D GUI Camera").camera.enabled = true;
+		GameObject.Find ("3D GUI Camera").camera.pixelRect = new Rect(InfomationWindowPostion.x+50, -InfomationWindowPostion.y+Screen.height*0.8f,100,100);
 		PickImage ();
 		
 		GUI.Box (new Rect (200, 50, 365, 125), "");
@@ -326,12 +334,12 @@ public class ButtonBar : MonoBehaviour
 		
 		
 		//Rorate left
-		if (GUI.Button (new Rect (60, 170, 20, 20), "<")) {
-			
+		if (GUI.RepeatButton (new Rect (60, 170, 20, 20), "<")) {
+			GameObject.Find("3D Model").transform.Rotate(0,5,0);
 		}
 		//Rotate right
-		if (GUI.Button (new Rect (120, 170, 20, 20), ">")) {
-			
+		if (GUI.RepeatButton (new Rect (120, 170, 20, 20), ">")) {
+			GameObject.Find("3D Model").transform.Rotate(0,-5,0);
 		}
 		
 		GUI.Label (new Rect (240, 200, 200, 30), "Cost : " + BuildingCost);

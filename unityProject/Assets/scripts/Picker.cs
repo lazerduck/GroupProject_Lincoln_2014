@@ -87,11 +87,7 @@ public class Picker : MonoBehaviour {
 				GoalPos.x = Random.Range(0, MapColumns);
 			GoalPos.z = Random.Range(0, MapRows);
 			int place = (int)(GoalPos.z * MapColumns + GoalPos.x);
-			BlockControl blocktemp = Tiles [place].GetComponent<BlockControl> ();
-			if (blocktemp.BuiltOn) {
-				//hope no one sees this goto 0_0, its a bit lazy, but i am using labels and its all nicely contained in the same function so it should be fine
-				goto Start;
-			}
+
 			GoalPos.y = 2;
 			GoalPos.x *= tile_size;
 			GoalPos.z *= tile_size;
