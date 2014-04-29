@@ -2,35 +2,27 @@
 using System.Collections;
 
 public class WaterPollution : MonoBehaviour {
-
-	private GameObject water;
-	private Color newWaterColor;
+	
 	public float smooth = 2;
-	// Use this for initialization
+	private Color newWaterColor;
+	private GameObject water;
 	void Start () {
 		water = GameObject.FindWithTag("Water");
 		newWaterColor = water.renderer.material.GetColor("_horizonColor");
 	}
-
+	
 	void Update () {
 		ColorChanging();
-
-			//this.renderer.material.SetColor = new Color(0,225,0);
-			
-			//http://answers.unity3d.com/questions/230315/change-water-color-through-script-when-an-action-o.html
-		}
-
-
+	}
+	
 	void ColorChanging(){
-		Color waterColorBlack = new Color(0.0f,0.0f,0.0f,1.0f);
-		Color waterColorGrey = new Color(0.145f,0.165f,0.18f,1.0f);         
-		//if(/*Something happens*/){
-			newWaterColor = waterColorBlack;
-		//}
-	//	if(/*Something else happens*/){
-		//	newWaterColor = waterColorGrey;
-		//}         
-		
+		GameObject[] temp;
+		temp= GameObject.FindGameObjectsWithTag("Litter");
+		Color waterColorBlack = new Color(0.0f,temp.Length/10f,0.0f,1.0f);
+		newWaterColor = waterColorBlack;
 		water.renderer.material.SetColor("_horizonColor", Color.Lerp(water.renderer.material.GetColor("_horizonColor"), newWaterColor, Time.deltaTime * smooth));
 	}
+	
+	
+	
 }

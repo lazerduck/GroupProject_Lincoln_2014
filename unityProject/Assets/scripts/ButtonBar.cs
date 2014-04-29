@@ -72,6 +72,9 @@ public class ButtonBar : MonoBehaviour
 	public Texture OptionsTexture;
 	public Texture BinIconTexture;
 	public Texture DeleteIconTexture;
+	public Texture ButtonTexture;
+	public Texture ButtonBarTexture;
+	public Texture WindowBackgroundTexture;
 	#endregion
 	#endregion
 	#region Skin
@@ -159,6 +162,7 @@ public class ButtonBar : MonoBehaviour
 	//map instance
 	Create_map map;
 
+	string OpenorClose;
 	// Use this for initialization
 	void Start ()
 	{
@@ -180,6 +184,7 @@ public class ButtonBar : MonoBehaviour
 		#endregion
 		#endregion	
 		ScrollMap = 50;
+		OpenorClose = ">";
 	}
 	
 	// Update is called once per frame
@@ -207,14 +212,7 @@ public class ButtonBar : MonoBehaviour
 		GUI.Label (new Rect (350, 10, 150, 20), "Visitors : "+NPCTotal.Length);
 		#endregion
 		
-        //#region Camera move
-        //ScrollMap = GUI.HorizontalScrollbar (new Rect (Screen.width * 0.6f, Screen.height * 0.9f, 500, 70), ScrollMap, 5F, 0.0F, 100.0F);
-		
-        //Vector3 temp = Camera.main.transform.position;
-        //temp.x = ScrollMap;
-        //Camera.main.transform.position = temp;
-        //#endregion
-		
+       	
 		#region Windows
 		ButtonBarWindowPostion = CheckBounds (GUI.Window (0, ButtonBarWindowPostion, ToggleButtonWindow, ""));
 		helpButtonWindowPostion = CheckBounds (GUI.Window (1, helpButtonWindowPostion, HelpButtonWindow, ""));
@@ -243,67 +241,70 @@ public class ButtonBar : MonoBehaviour
 	#region Button bar
 	private void ToggleButtonWindow (int id)
 	{
-		if (GUI.Button (new Rect (10, 10, 40, 50), ">")) {
+		if (ShowButtonBarWindow == false){
+			OpenorClose = ">";
+		}
+		GUI.DrawTexture (new Rect (0, 0, 550, 70), ButtonBarTexture, ScaleMode.ScaleToFit, true, 10.0F);
+		if (GUI.Button (new Rect (10, 10, 40, 50), OpenorClose)) {
 			ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 60, 70);
 			ShowButtonBarWindow = !ShowButtonBarWindow;
-			Debug.Log ("Main Button Clicked");
-		}
+
+				}
 		
 		if (ShowButtonBarWindow == true) {
-			
-			ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 550, 70);
-			
-			if (GUI.Button (new Rect (70, 10, 50, 50), new GUIContent (icecreamIconTexture, "Ice Cream Shop"))) {
-				buildingSize = 0;
-				Logic (1);					
-			}		
+			OpenorClose = "<";
+						ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 550, 70);
+					
+						if (GUI.Button (new Rect (70, 10, 50, 50), new GUIContent (icecreamIconTexture, "Ice Cream Shop"))) {
+								buildingSize = 0;
+								Logic (1);					
+						}		
 
 			
-			if (GUI.Button (new Rect (130, 10, 50, 50), new GUIContent (giftIconTexture, "Gift Shop"))) {
-				buildingSize = 0;
-				Logic (2);
-			}		
+						if (GUI.Button (new Rect (130, 10, 50, 50), new GUIContent (giftIconTexture, "Gift Shop"))) {
+								buildingSize = 0;
+								Logic (2);
+						}		
 			
 			
-			if (GUI.Button (new Rect (190, 10, 50, 50), new GUIContent (hotelIconTexture, "Hotel"))) {
-				buildingSize = 0;
-				Logic (3);
-			}		
+						if (GUI.Button (new Rect (190, 10, 50, 50), new GUIContent (hotelIconTexture, "Hotel"))) {
+								buildingSize = 0;
+								Logic (3);
+						}		
 			
 			
-			if (GUI.Button (new Rect (250, 10, 50, 50), new GUIContent (lifeguardIconTexture, "Lifeguard"))) {
-				buildingSize = 0;
-				Logic (4);
-			}
+						if (GUI.Button (new Rect (250, 10, 50, 50), new GUIContent (lifeguardIconTexture, "Lifeguard"))) {
+								buildingSize = 0;
+								Logic (4);
+						}
 			
 			
-			if (GUI.Button (new Rect (310, 10, 50, 50), new GUIContent (clubsIconTexture, "Club"))) {
-				buildingSize = 0;
-				Logic (5);
-			}
+						if (GUI.Button (new Rect (310, 10, 50, 50), new GUIContent (clubsIconTexture, "Club"))) {
+								buildingSize = 0;
+								Logic (5);
+						}
 			
 			
-			if (GUI.Button (new Rect (370, 10, 50, 50), new GUIContent (fisheriesIconTexture, "Fisheries"))) {	
-				buildingSize = 0;
-				Logic (6);	
-			} 
+						if (GUI.Button (new Rect (370, 10, 50, 50), new GUIContent (fisheriesIconTexture, "Fisheries"))) {	
+								buildingSize = 0;
+								Logic (6);	
+						} 
 
-			if (GUI.Button (new Rect (420, 10, 50, 50), new GUIContent (BinIconTexture, "Recycling Bin"))) {	
-				buildingSize = 0;
-				Logic (7);	
-			} 
+						if (GUI.Button (new Rect (430, 10, 50, 50), new GUIContent (BinIconTexture, "Recycling Bin"))) {	
+								buildingSize = 0;
+								Logic (7);	
+						} 
 
-			if (GUI.Button (new Rect (490, 10, 50, 50), new GUIContent (DeleteIconTexture, "Delete"))) {	
-				//Delete
-                int[] SendNum = new int[2];
-                SendNum[0] = -1;
-                SendNum[1] = -1;
-                buildingcont.SendMessage("Build", SendNum);
-				//Logic (6);	
-			} 
-			GUI.Label (new Rect (250, 0, 100, 40), GUI.tooltip);
-		}
-		
+						if (GUI.Button (new Rect (490, 10, 50, 50), new GUIContent (DeleteIconTexture, "Delete"))) {	
+								//Delete
+								int[] SendNum = new int[2];
+								SendNum [0] = -1;
+								SendNum [1] = -1;
+								buildingcont.SendMessage ("Build", SendNum);
+								//Logic (6);	
+						} 
+						GUI.Label (new Rect (250, 0, 100, 40), GUI.tooltip);
+				} 	
 		
 		if (LockButtonBarUI == false) {
 			GUI.DragWindow ();
@@ -363,7 +364,8 @@ public class ButtonBar : MonoBehaviour
 
 
 		GUI.backgroundColor = new Color (0, 0, 0, 0);
-		if (GUI.Button (new Rect (InfomationWindowPostion.width - 40,10, DeleteButtonX, DeleteButtonY), CloseButtonTexture)) {
+		if (GUI.Button (new Rect (InfomationWindowPostion.width - 35,0, DeleteButtonX, DeleteButtonY), CloseButtonTexture)) {
+			GameObject.Find ("3D GUI Camera").camera.enabled = false;
 			ShowInfomationWindow = !ShowInfomationWindow;
 		}
 		if (LockInfomationUI == false) {
@@ -387,7 +389,8 @@ public class ButtonBar : MonoBehaviour
 	
 	private void HelpWindow (int id)
 	{
-		GUILayout.BeginArea (new Rect (10, 30, 600, 250));
+		GUI.Box (new Rect (0, 0, helpWindowPostion.width, helpWindowPostion.height), "");
+		GUILayout.BeginArea (new Rect (10, 40, 600, 250));
 		scrollHelpPosition = GUILayout.BeginScrollView (scrollHelpPosition, GUILayout.Width (580), GUILayout.Height (200));
 		GUILayout.BeginVertical ();
 		
@@ -601,7 +604,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.EndScrollView ();
 		GUILayout.EndArea ();
 		GUI.backgroundColor = new Color (0, 0, 0, 0);
-		if (GUI.Button (new Rect (helpWindowPostion.width - 40,10, DeleteButtonX, DeleteButtonY), CloseButtonTexture)) {
+		if (GUI.Button (new Rect (helpWindowPostion.width - 35,0, DeleteButtonX, DeleteButtonY), CloseButtonTexture)) {
 			ShowHelpWindow = !	ShowHelpWindow;
 		}
 		
@@ -626,8 +629,10 @@ public class ButtonBar : MonoBehaviour
 	
 	private void OptionWindow (int id)
 	{
+		GUI.Box (new Rect (0, 0, OptionWindowPostion.width, OptionWindowPostion.height), "");
+		GUILayout.BeginArea (new Rect (10, 40, 580, 250));
 		GUILayout.BeginVertical ();
-		
+
 		#region Button Bar
 		GUILayout.BeginHorizontal ();
 		if (LockButtonBarUI == false) {
@@ -725,9 +730,9 @@ public class ButtonBar : MonoBehaviour
 		#endregion	
 		
 		GUILayout.EndVertical ();
-		
+		GUILayout.EndArea ();
 		GUI.backgroundColor = new Color (0, 0, 0, 0);
-		if (GUI.Button (new Rect (OptionWindowPostion.width - 40,10, DeleteButtonX, DeleteButtonY), CloseButtonTexture)) {
+		if (GUI.Button (new Rect (OptionWindowPostion.width - 35,0, DeleteButtonX, DeleteButtonY), CloseButtonTexture)) {
 			ShowOptionWindow = !ShowOptionWindow;
 		}
 		
