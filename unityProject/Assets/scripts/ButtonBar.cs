@@ -295,6 +295,10 @@ public class ButtonBar : MonoBehaviour
 
 			if (GUI.Button (new Rect (490, 10, 50, 50), new GUIContent (DeleteIconTexture, "Delete"))) {	
 				//Delete
+                int[] SendNum = new int[2];
+                SendNum[0] = -1;
+                SendNum[1] = -1;
+                buildingcont.SendMessage("Build", SendNum);
 				//Logic (6);	
 			} 
 			GUI.Label (new Rect (250, 0, 100, 40), GUI.tooltip);
