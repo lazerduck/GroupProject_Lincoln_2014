@@ -3,9 +3,11 @@ using UnityEngine;
 // Sets up transformation matrices to scale&scroll water waves
 // for the case where graphics card does not support vertex programs.
 
+
 [ExecuteInEditMode]
 public class WaterSimple : MonoBehaviour
 {
+    float stuff = 0;
 	void Update()
 	{
 		if( !renderer )
@@ -28,5 +30,13 @@ public class WaterSimple : MonoBehaviour
 				
 		scrollMatrix = Matrix4x4.TRS( new Vector3(offsetClamped.z,offsetClamped.w,0), Quaternion.identity, scale * 0.45f );
 		mat.SetMatrix( "_WaveMatrix2", scrollMatrix );
+        stuff += Time.deltaTime;
+        Mesh mesh  = this.GetComponent<MeshFilter>().sharedMesh;
+		Vector3[] vertices = mesh.vertices;
+		for (int i = 0; i < vertices.Length; i++)
+            vertices[i].y = Mathf.Sin( vertices[i].z *stuff*0.01f)/2;
+		mesh.vertices = vertices;
+		mesh.RecalculateBounds();
+        
 	}
 }
