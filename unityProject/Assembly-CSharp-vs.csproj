@@ -51,6 +51,7 @@
      <Compile Include="Assets\scripts\ButtonBar.cs" />
      <Compile Include="Assets\scripts\CameraControls.cs" />
      <Compile Include="Assets\scripts\Create_map.cs" />
+     <Compile Include="Assets\scripts\FadingGUI.cs" />
      <Compile Include="Assets\scripts\GUIButtons.cs" />
      <Compile Include="Assets\scripts\GuiScript.cs" />
      <Compile Include="Assets\scripts\MainMenu.cs" />
