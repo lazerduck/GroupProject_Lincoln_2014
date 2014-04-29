@@ -162,10 +162,14 @@ public class ButtonBar : MonoBehaviour
 	//map instance
 	Create_map map;
 
+	GameObject thing;
+	public GameObject[] buildings = new GameObject[19];
+	GameObject buildingthing;
 	string OpenorClose;
 	// Use this for initialization
 	void Start ()
 	{
+		thing = GameObject.Find ("3D Model");
 		//for the 3d camera
 		GameObject.Find ("3D GUI Camera").camera.enabled = false;
 		coins = 10;
@@ -340,11 +344,11 @@ public class ButtonBar : MonoBehaviour
 		
 		//Rorate left
 		if (GUI.RepeatButton (new Rect (60, 170, 20, 20), "<")) {
-			GameObject.Find("3D Model").transform.Rotate(0,5,0);
+			thing.transform.Rotate(0,5,0);
 		}
 		//Rotate right
 		if (GUI.RepeatButton (new Rect (120, 170, 20, 20), ">")) {
-			GameObject.Find("3D Model").transform.Rotate(0,-5,0);
+			thing.transform.Rotate(0,-5,0);
 		}
 		
 		GUI.Label (new Rect (240, 200, 200, 30), "Cost : " + BuildingCost);
@@ -801,18 +805,47 @@ public class ButtonBar : MonoBehaviour
 	
 	private void PickImage ()
 	{
+		Destroy (buildingthing);
+		Transform[] allChildren;
 		switch (buildingNum) {
 			#region Ice cream
 		case 1:
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 1;
-				break;
+				buildingthing = (GameObject)Instantiate(buildings[9]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
+			break;
 			case 1:
 				BuildingCost = 2;
+				buildingthing = (GameObject)Instantiate(buildings[10]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 2:
 				BuildingCost = 3;
+				buildingthing = (GameObject)Instantiate(buildings[11]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			}
 			break;
@@ -823,12 +856,39 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 1;
+				buildingthing = (GameObject)Instantiate(buildings[15]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 1:
 				BuildingCost = 2;
+				buildingthing = (GameObject)Instantiate(buildings[16]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 2:
 				BuildingCost = 3;
+				buildingthing = (GameObject)Instantiate(buildings[17]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			}
 			break;
@@ -839,12 +899,39 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 1;
+				buildingthing = (GameObject)Instantiate(buildings[6]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 1:
 				BuildingCost = 2;
+				buildingthing = (GameObject)Instantiate(buildings[7]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 2:
 				BuildingCost = 3;
+				buildingthing = (GameObject)Instantiate(buildings[8]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			}
 			break;
@@ -855,12 +942,39 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 1;
+				buildingthing = (GameObject)Instantiate(buildings[12]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 12;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 1:
 				BuildingCost = 2;
+				buildingthing = (GameObject)Instantiate(buildings[13]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 2:
 				BuildingCost = 3;
+				buildingthing = (GameObject)Instantiate(buildings[14]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			}
 			break;
@@ -871,13 +985,39 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 1;
+				buildingthing = (GameObject)Instantiate(buildings[0]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 1:
 				BuildingCost = 2;
-				GUI.DrawTexture (new Rect (0, 0, 200, 200), clubsMediumTexture, ScaleMode.ScaleToFit, true, 0);
+				buildingthing = (GameObject)Instantiate(buildings[1]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 2:
 				BuildingCost = 3;
+				buildingthing = (GameObject)Instantiate(buildings[2]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			}
 			break;
@@ -888,12 +1028,39 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 1;
+				buildingthing = (GameObject)Instantiate(buildings[3]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 1:
 				BuildingCost = 2;
+				buildingthing = (GameObject)Instantiate(buildings[4]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			case 2:
 				BuildingCost = 3;
+				buildingthing = (GameObject)Instantiate(buildings[5]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			}
 			break;
@@ -904,6 +1071,15 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 1;
+				buildingthing = (GameObject)Instantiate(buildings[18]);
+				buildingthing.transform.position = thing.transform.position;
+				buildingthing.layer = 8;
+				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+				foreach(Transform g in allChildren)
+				{
+					g.transform.rotation = thing.transform.rotation;
+					g.gameObject.layer = 8;
+				}
 				break;
 			}
 			break;

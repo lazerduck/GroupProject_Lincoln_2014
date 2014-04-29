@@ -20,45 +20,44 @@ public class BuildingControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (building)
-        {
-            RaycastHit[] hits;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            hits = Physics.RaycastAll(ray, 100);
-            if (!deteing)
-            {
-                foreach (RaycastHit hit in hits)
-                {
-                    if (hit.transform.tag == "Space")
-                    {
-                        build.transform.position = hit.transform.position;
-                        current = hit.transform.gameObject;
-                    }
-                }
-            }
-            if (!deteing)
-            {
+        if (building) {
+			Debug.Log("building");
+						RaycastHit[] hits;
+						Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+						hits = Physics.RaycastAll (ray, 100);
+						if (!deteing) {
+								foreach (RaycastHit hit in hits) {
+										if (hit.transform.tag == "Space") {
+												build.transform.position = hit.transform.position;
+												current = hit.transform.gameObject;
+										}
+								}
+						}
+						if (!deteing) {
+								if (Input.GetMouseButton (0)) {
+										BlockControl blockTemp = current.GetComponent<BlockControl> ();
+										if (!blockTemp.BuiltOn) {
+												building = false;
+												blockTemp.BuiltOn = true;
+												blockTemp.size = size;
+												blockTemp.type = type;
+										}
+								}
+						}
+				}
+            
+            if(deteing)
+		{
                 if (Input.GetMouseButton(0))
                 {
-                    BlockControl blockTemp = current.GetComponent<BlockControl>();
-                    if (!blockTemp.BuiltOn)
-                    {
-                        building = false;
-                        blockTemp.BuiltOn = true;
-                        blockTemp.size = size;
-                        blockTemp.type = type;
-                    }
-                }
-            }
-            else
-            {
-                if (Input.GetMouseButton(0))
-                {
+				RaycastHit[] hits;
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
                     hits = Physics.RaycastAll(ray, 100);
                     foreach (RaycastHit hit in hits)
                     {
-                        if (hit.transform.tag == "Club" || hit.transform.tag == "Icecream" || hit.transform.tag == "Hotel" || hit.transform.tag == "Shop" || hit.transform.tag == "TrashCan")
+					if (hit.transform.tag == "LifeGaurd"||hit.transform.tag == "Fish"||hit.transform.tag == "Club" || hit.transform.tag == "Icecream" || hit.transform.tag == "Hotel" || hit.transform.tag == "Shop" || hit.transform.tag == "TrashCan")
                         {
+						Debug.Log(hit.transform.tag);
                             Destroy(hit.transform.gameObject);
                             building = false;
                         }
@@ -67,7 +66,6 @@ public class BuildingControl : MonoBehaviour
                     {
                         if (hit.transform.tag == "Space")
                         {
-                            build.transform.position = hit.transform.position;
                             current = hit.transform.gameObject;
                         }
                     }
@@ -76,12 +74,9 @@ public class BuildingControl : MonoBehaviour
                     BlockControl blockTemp = current.GetComponent<BlockControl>();
 
                     blockTemp.BuiltOn = false;
-
-
-
                     deteing = false;
-                }
-            }
+			}
+            
         }
     }
     void Build(int[] input)
@@ -89,7 +84,6 @@ public class BuildingControl : MonoBehaviour
         if (input[0] == -1)
         {
             deteing = true;
-            building = true;
         }
         else
         {
@@ -99,6 +93,14 @@ public class BuildingControl : MonoBehaviour
             building = true;
             Debug.Log(test);
             build = (GameObject)Instantiate(buildings[(type * 3) + size]);
+			if(input[0] == 5)
+			{
+				build.transform.tag = "Club";
+			}
+			if(input[0] == 6)
+			{
+				build.transform.tag = "Fish";
+			}
         }
     }
 }
