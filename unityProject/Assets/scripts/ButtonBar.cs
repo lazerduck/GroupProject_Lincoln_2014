@@ -207,13 +207,13 @@ public class ButtonBar : MonoBehaviour
 		GUI.Label (new Rect (350, 10, 150, 20), "Visitors : "+NPCTotal.Length);
 		#endregion
 		
-		#region Camera move
-		ScrollMap = GUI.HorizontalScrollbar (new Rect (Screen.width * 0.6f, Screen.height * 0.9f, 500, 70), ScrollMap, 5F, 0.0F, 100.0F);
+        //#region Camera move
+        //ScrollMap = GUI.HorizontalScrollbar (new Rect (Screen.width * 0.6f, Screen.height * 0.9f, 500, 70), ScrollMap, 5F, 0.0F, 100.0F);
 		
-		Vector3 temp = Camera.main.transform.position;
-		temp.x = ScrollMap;
-		Camera.main.transform.position = temp;
-		#endregion
+        //Vector3 temp = Camera.main.transform.position;
+        //temp.x = ScrollMap;
+        //Camera.main.transform.position = temp;
+        //#endregion
 		
 		#region Windows
 		ButtonBarWindowPostion = CheckBounds (GUI.Window (0, ButtonBarWindowPostion, ToggleButtonWindow, ""));

@@ -8,6 +8,8 @@ public class CameraControls : MonoBehaviour
 	public GameObject CameraObj;
 	//gui object
 	public GUITexture GuiObject;
+    //camera look at
+    public GameObject camref;
 	//building test
 	public GameObject Building;
 	//building placer
@@ -25,7 +27,7 @@ public class CameraControls : MonoBehaviour
 	Vector3 MouseClick;
 	void Start()
 	{
-		
+        camref = GameObject.FindGameObjectWithTag("camref");
 		Map = this.GetComponent<Create_map>();
 		Columns = Map.Columns;
 		Size = Map.TileSize;;
@@ -36,13 +38,8 @@ public class CameraControls : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		//Movement//
-		/*on pc we can use the arrows to move and zoom
-         *as well as some mouse control
-         *on mobile we will need sliders
-         *or perhaps swiping
-         */
-		//calculate the aspect ratio
+        camref.transform.position = new Vector3(transform.position.x, 0, camref.transform.position.z);
+        this.transform.LookAt(camref.transform.position);
 		//Mouse controls
 		float scrollWheel = Input.GetAxis ("Mouse ScrollWheel");
 		scrollWheel = -scrollWheel*4;
@@ -52,7 +49,7 @@ public class CameraControls : MonoBehaviour
 		if (scrollWheel >0 && CameraObj.transform.position.y > 10) {
 			scrollWheel = 0;
 		}
-		CameraObj.transform.Translate(new Vector3(0, 0.4f*scrollWheel, -0.6f*scrollWheel));
+		CameraObj.transform.Translate(new Vector3(0, 0.4f*scrollWheel, 0));//-0.6f*scrollWheel));
 		//keyboard controls
 		if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A))
 		{
@@ -72,17 +69,16 @@ public class CameraControls : MonoBehaviour
 		{
 			if(CameraObj.transform.position.y > 1)
 			{
-				CameraObj.transform.Translate(new Vector3(0, -0.2f, 0.3f));
+				CameraObj.transform.Translate(new Vector3(0, -0.2f, 0));
 			}
 		}
 		if (Input.GetKey(KeyCode.DownArrow)|| Input.GetKey(KeyCode.S))
 		{
 			if(CameraObj.transform.position.y < 10)
 			{
-				CameraObj.transform.Translate(new Vector3(0, 0.2f, -0.3f));
+				CameraObj.transform.Translate(new Vector3(0, 0.2f, 0));
 			}
 		}
-		float aspect = Screen.width / Screen.height;
 		//get polution level
 		Create_map tempMap = this.gameObject.GetComponent<Create_map>();
 		//Debug.Log (tempMap.polution);
@@ -106,18 +102,5 @@ public class CameraControls : MonoBehaviour
 			dist = 0;
 			old_dist = 0;
 		}
-	}
-	
-	private bool ClickTest(GUITexture Button, Vector2 MousePos)
-	{
-		if(Button.HitTest(MousePos))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
+	}	
 }

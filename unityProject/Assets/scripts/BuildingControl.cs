@@ -4,7 +4,7 @@ using System.Collections;
 public class BuildingControl : MonoBehaviour {
 
 	// Use this for initialization
-	public GameObject[] buildings = new GameObject[18];
+	public GameObject[] buildings = new GameObject[19];
 	GameObject current;
 	int type = 0;
 	int size = 0;

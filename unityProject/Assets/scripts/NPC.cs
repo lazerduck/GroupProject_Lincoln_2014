@@ -131,7 +131,7 @@ public class NPC : MonoBehaviour
 
 			}
 		}
-		//get polution level
+		//get pollution level
 		float pollution  = Map.polution/ Map.Columns*Map.Rows;
 		if(pollution > polTollerance)
 		{

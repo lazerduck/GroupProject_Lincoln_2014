@@ -33,8 +33,11 @@ public class NPCControl : MonoBehaviour {
 			timer = 0;
 			waitTime = Random.Range(1,10);
 		}
-		if (currNpc > totalNpc) {
-			npcs[0].SendMessage("leave");
+		if (npcs.Count > totalNpc) {
+            if (npcs[0] != null)
+            {
+                npcs[0].SendMessage("leave");
+            }
 			npcs.RemoveAt(0);
 		}
 	}
