@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,6 +12,7 @@ public class NPCControl : MonoBehaviour {
 	public int totalNpc = 20;
 	float timer = 0f;
 	float waitTime = 1;
+	public float wait = 40;
 	void Start () {
         
 	}
@@ -31,7 +32,7 @@ public class NPCControl : MonoBehaviour {
 			GameObject[] temp = GameObject.FindGameObjectsWithTag("NPC");
 			currNpc = temp.Length;
 			timer = 0;
-			waitTime = Random.Range(1,10);
+			waitTime = Random.Range(1,wait);
 		}
 		if (npcs.Count > totalNpc) {
             if (npcs[0] != null)

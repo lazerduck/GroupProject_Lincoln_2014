@@ -41,6 +41,7 @@ public class BuildingControl : MonoBehaviour
 												blockTemp.BuiltOn = true;
 												blockTemp.size = size;
 												blockTemp.type = type;
+						build.SendMessage("foo");
 										}
 								}
 						}

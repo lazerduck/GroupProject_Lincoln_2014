@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ShowSkin.cs" />
+     <Compile Include="Assets\hotel_l.cs" />
+     <Compile Include="Assets\hotel_m.cs" />
+     <Compile Include="Assets\hotel_s.cs" />
+     <Compile Include="Assets\life_l.cs" />
+     <Compile Include="Assets\life_m.cs" />
+     <Compile Include="Assets\life_s.cs" />
      <Compile Include="Assets\scripts\BlockControl.cs" />
      <Compile Include="Assets\scripts\BuildingControl.cs" />
      <Compile Include="Assets\scripts\ButtonBar.cs" />

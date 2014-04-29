@@ -166,9 +166,14 @@ public class ButtonBar : MonoBehaviour
 	public GameObject[] buildings = new GameObject[19];
 	GameObject buildingthing;
 	string OpenorClose;
+
+
+	GameObject np;
+					
 	// Use this for initialization
 	void Start ()
 	{
+			np = GameObject.FindGameObjectWithTag ("npccontrol");
 		thing = GameObject.Find ("3D Model");
 		//for the 3d camera
 		GameObject.Find ("3D GUI Camera").camera.enabled = false;
@@ -213,7 +218,8 @@ public class ButtonBar : MonoBehaviour
 		GUI.Label (new Rect (110, 10, 150, 20), "E-Points : " + epoint);
 		GUI.Label (new Rect (220, 10, 150, 20), "Polution level : " + map.polution);
 		GameObject[] NPCTotal = GameObject.FindGameObjectsWithTag("NPC");
-		GUI.Label (new Rect (350, 10, 150, 20), "Visitors : "+NPCTotal.Length);
+		NPCControl npc = np.GetComponent<NPCControl> ();
+		GUI.Label (new Rect (350, 10, 150, 20), "Visitors : "+NPCTotal.Length+"\\"+npc.totalNpc);
 		#endregion
 		
        	
