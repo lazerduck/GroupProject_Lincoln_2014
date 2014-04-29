@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ShowSkin.cs" />
+     <Compile Include="Assets\club_l.cs" />
      <Compile Include="Assets\hotel_l.cs" />
      <Compile Include="Assets\hotel_m.cs" />
      <Compile Include="Assets\hotel_s.cs" />
