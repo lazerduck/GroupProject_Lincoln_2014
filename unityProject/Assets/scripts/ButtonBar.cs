@@ -598,7 +598,7 @@ public class ButtonBar : MonoBehaviour
 		
 		#region Large Fisherie
 		GUILayout.BeginHorizontal ();
-		GUILayout.Box (fisheriesMediumTexture, GUILayout.Width (Size), GUILayout.Height (Size));
+		GUILayout.Box (fisheriesLargeTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Large Fisherie");
 		GUILayout.EndHorizontal ();
