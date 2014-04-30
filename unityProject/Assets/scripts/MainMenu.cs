@@ -57,13 +57,16 @@ private void OnGUI(){
 		if (GUILayout.Button (  ("Small"), GUILayout.Width(200), GUILayout.Height(200)))
 		{
 			GameSize = 1;
+			Create_map.temp_cols = 20;
 			Application.LoadLevel (levelToload);
+
 		}
 
 
 		if (GUILayout.Button ("Medium", GUILayout.Width(200), GUILayout.Height(200)))
 		{
 			GameSize = 2;
+			Create_map.temp_cols = 33;
 			Application.LoadLevel (levelToload);
 		}
 
@@ -71,6 +74,7 @@ private void OnGUI(){
 		if (GUILayout.Button ("Large", GUILayout.Width(200), GUILayout.Height(200)))
 		{
 			GameSize = 3;
+			Create_map.temp_cols = 50;
 			Application.LoadLevel (levelToload);
 		}
 		GUILayout.EndHorizontal ();

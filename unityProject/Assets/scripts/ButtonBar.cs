@@ -1182,6 +1182,22 @@ public class ButtonBar : MonoBehaviour
 				break;
 			}
 			break;
+		case 8:
+			switch (buildingSize) {
+			case 0:
+				BuildingCost = 500;
+//		  		buildingthing = (GameObject)Instantiate(buildings[18]);
+//				buildingthing.transform.position = thing.transform.position;
+//				buildingthing.layer = 8;
+//				allChildren = buildingthing.GetComponentsInChildren<Transform>();
+//				foreach(Transform g in allChildren)
+//				{
+//					g.transform.rotation = thing.transform.rotation;
+//					g.gameObject.layer = 8;
+//				}
+				break;
+			}
+			break;
 			#endregion
 		}
 	}

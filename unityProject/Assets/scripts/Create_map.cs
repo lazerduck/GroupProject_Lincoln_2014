@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Create_map : MonoBehaviour {
 	
 	public GameObject Tile;
+	public static int temp_cols;
 	public int Rows;
 	public int Columns;
 	public float TileSize;
@@ -14,7 +15,11 @@ public class Create_map : MonoBehaviour {
 	void Start () {
 		TileSize = 5;
 		Rows = 6;
-		Columns = 33;
+		if (temp_cols != 0) {
+						Columns = temp_cols;
+				} else {
+			Columns = 33;
+				}
 		for(int i = 0; i<Rows;i++)
 		{
 			for(int j = 0; j<Columns;j++)

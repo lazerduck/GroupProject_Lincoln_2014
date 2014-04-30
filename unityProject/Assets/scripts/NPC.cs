@@ -46,6 +46,7 @@ public class NPC : MonoBehaviour
 	//3 shop
 	//4 litter
 	public GameObject[] display = new GameObject[4];
+	public GameObject buildinggoto;
 	void Start()
 	{
 		CameraObj = GameObject.FindGameObjectWithTag ("theCamera");
@@ -88,30 +89,84 @@ public class NPC : MonoBehaviour
 				if(iceCreamNeed<=0)
 				{
 					//get trash
-					LitterInHand = Random.Range(8,11);
-					litter = true;
-					needing = false;
+
 					calcNextGoal();
 					iceCreamNeed = Random.Range(5,100);
+					if(buildinggoto.transform.FindChild("Icecream1"))
+					{
+						LitterInHand = Random.Range(8,11);
+						litter = true;
+						needing = false;
 					CameraObj.SendMessage("AddMoney",2);
+					}
+					if(buildinggoto.transform.FindChild("Icecream2"))
+					{
+						LitterInHand = Random.Range(8,11);
+						litter = true;
+						needing = false;
+						CameraObj.SendMessage("AddMoney",5);
+					}
+					if(buildinggoto.transform.FindChild("Icecream3"))
+					{
+						LitterInHand = Random.Range(8,11);
+						litter = true;
+						needing = false;
+						CameraObj.SendMessage("AddMoney",10);
+					}
 				}
 				if(clubNeed<=0)
 				{
-					LitterInHand = Random.Range(0,5);
-					litter = true;
-					needing = false;
+
 					calcNextGoal();
 					clubNeed = Random.Range(40,100);
-					CameraObj.SendMessage("AddMoney",5);
+					if(buildinggoto.transform.FindChild("Club1"))
+					{
+						LitterInHand = Random.Range(0,5);
+						litter = true;
+						needing = false;
+						CameraObj.SendMessage("AddMoney",5);
+					}
+					if(buildinggoto.transform.FindChild("Club2"))
+					{
+						LitterInHand = Random.Range(0,5);
+						litter = true;
+						needing = false;
+						CameraObj.SendMessage("AddMoney",15);
+					}
+					if(buildinggoto.transform.FindChild("Club3"))
+					{
+						LitterInHand = Random.Range(0,5);
+						litter = true;
+						needing = false;
+						CameraObj.SendMessage("AddMoney",30);
+					}
 				}
 				if(giftNeed<=0)
 				{
-					LitterInHand = Random.Range(5,8);
-					litter = true;
-					needing = false;
+
 					calcNextGoal();
 					giftNeed = Random.Range(60,100);
+					if(buildinggoto.transform.FindChild("Shop1"))
+					{
 					CameraObj.SendMessage("AddMoney",10);
+						LitterInHand = Random.Range(5,8);
+						litter = true;
+						needing = false;
+					}
+					if(buildinggoto.transform.FindChild("Shop2"))
+					{
+						CameraObj.SendMessage("AddMoney",20);
+						LitterInHand = Random.Range(5,8);
+						litter = true;
+						needing = false;
+					}
+					if(buildinggoto.transform.FindChild("Shop3"))
+					{
+						CameraObj.SendMessage("AddMoney",40);
+						LitterInHand = Random.Range(5,8);
+						litter = true;
+						needing = false;
+					}
 				}
 			}
 		}
@@ -192,6 +247,7 @@ public class NPC : MonoBehaviour
 			{
 				if(Vector3.Distance(transform.position,g.transform.position)<dist)
 				{
+					buildinggoto = g;
 					dist = Vector3.Distance(transform.position,g.transform.position);
 					GoalPos.x = g.transform.position.x;
 					GoalPos.z = g.transform.position.z;
@@ -217,6 +273,7 @@ public class NPC : MonoBehaviour
 			{
 				if(Vector3.Distance(transform.position,g.transform.position)<dist)
 				{
+						buildinggoto = g;
 					dist = Vector3.Distance(transform.position,g.transform.position);
 					GoalPos.x = g.transform.position.x;
 					GoalPos.z = g.transform.position.z;
@@ -242,6 +299,7 @@ public class NPC : MonoBehaviour
 			{
 				if(Vector3.Distance(transform.position,g.transform.position)<dist)
 				{
+						buildinggoto = g;
 					dist = Vector3.Distance(transform.position,g.transform.position);
 					GoalPos.x = g.transform.position.x;
 					GoalPos.z = g.transform.position.z;

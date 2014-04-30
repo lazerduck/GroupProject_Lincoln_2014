@@ -22,6 +22,9 @@ public class Picker : MonoBehaviour {
 	bool picking = false;
     bool droppingoff = false;
 	bool nobin = false;
+	bool littered = false;
+	bool leaving = false;
+	float timer = 0;
 
 	void Start () {
 
@@ -38,6 +41,15 @@ public class Picker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		timer += Time.deltaTime;
+		if (timer > 120) {
+			leaving = true;
+			CalcPos();
+				}
+		if (litter == null && littered) {
+			CalcPos();
+			littered = false;
+				}
         this.rigidbody.velocity = new Vector3(0, 0, 0);
 		this.transform.LookAt (GoalPos);
 		this.transform.position = Vector3.MoveTowards (this.transform.position, GoalPos, speed * Time.deltaTime);
@@ -61,6 +73,10 @@ public class Picker : MonoBehaviour {
 		//moving
 		//arriving
 		if (Vector3.Distance (this.transform.position, GoalPos) < 3) {
+			if(leaving)
+			{
+				Destroy(this.gameObject);
+			}
             if (droppingoff)
             {
 				if(!nobin)
@@ -90,6 +106,10 @@ public class Picker : MonoBehaviour {
 	}
 	void CalcPos()
 	{
+		if (leaving) {
+			GoalPos = new Vector3(0,0,4);
+				}
+		else
         if (droppingoff)
         {
              GameObject[] temp = GameObject.FindGameObjectsWithTag("TrashCan");
@@ -114,6 +134,7 @@ public class Picker : MonoBehaviour {
                     float distance = Vector3.Distance(this.transform.position, g.transform.position);
                     if (distance < dist)
                     {
+
                         dist = distance;
                         GoalPos = g.transform.position;
                     }
@@ -136,6 +157,7 @@ public class Picker : MonoBehaviour {
                         dist = distance;
                         litter = g;
                         GoalPos = litter.transform.position;
+						littered = true;
                     }
                 }
             }

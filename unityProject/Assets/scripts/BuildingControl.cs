@@ -6,6 +6,7 @@ public class BuildingControl : MonoBehaviour
 
     // Use this for initialization
     public GameObject[] buildings = new GameObject[19];
+	public GameObject Picker;
     GameObject current;
     int type = 0;
     int size = 0;
@@ -82,11 +83,13 @@ public class BuildingControl : MonoBehaviour
     }
     void Build(int[] input)
     {
-        if (input[0] == -1)
-        {
-            deteing = true;
-        }
-        else
+        if (input [0] == -1) {
+						deteing = true;
+		} else if (input [0] == 8) {
+			 	Instantiate(Picker);
+
+		}
+     	else
         {
             string test = "test " + input[0] + " " + input[1];
             type = input[0] - 1;
