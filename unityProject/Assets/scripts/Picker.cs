@@ -21,6 +21,7 @@ public class Picker : MonoBehaviour {
 	float tile_size = 0;
 	bool picking = false;
     bool droppingoff = false;
+	bool nobin = false;
 
 	void Start () {
 
@@ -62,8 +63,11 @@ public class Picker : MonoBehaviour {
 		if (Vector3.Distance (this.transform.position, GoalPos) < 3) {
             if (droppingoff)
             {
+				if(!nobin)
+				{
                 TrashCount = 0;
                 droppingoff = false;
+				}
             }
 			if(picking)
 			{
@@ -89,6 +93,19 @@ public class Picker : MonoBehaviour {
         if (droppingoff)
         {
              GameObject[] temp = GameObject.FindGameObjectsWithTag("TrashCan");
+			if(temp.Length == 0)
+			{
+				GoalPos.x = Random.Range(0, Map.Columns);
+				GoalPos.z = Random.Range(0, Map.Rows);
+				GoalPos.y = 2;
+				GoalPos.x *= Map.TileSize;
+				GoalPos.z *= Map.TileSize;
+				nobin = true;
+
+			}
+			else
+			{
+				nobin = false;
             float dist = float.MaxValue;
             if (temp.Length > 0)
             {
@@ -102,6 +119,7 @@ public class Picker : MonoBehaviour {
                     }
                 }
             }
+			}
         }
         else
         {

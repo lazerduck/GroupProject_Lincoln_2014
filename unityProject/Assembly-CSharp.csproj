@@ -48,6 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\ShowSkin.cs" />
      <Compile Include="Assets\club_l.cs" />
+     <Compile Include="Assets\fishControl.cs" />
+     <Compile Include="Assets\fishRot.cs" />
+     <Compile Include="Assets\fish_l.cs" />
+     <Compile Include="Assets\fish_m.cs" />
+     <Compile Include="Assets\fishery_s.cs" />
      <Compile Include="Assets\hotel_l.cs" />
      <Compile Include="Assets\hotel_m.cs" />
      <Compile Include="Assets\hotel_s.cs" />

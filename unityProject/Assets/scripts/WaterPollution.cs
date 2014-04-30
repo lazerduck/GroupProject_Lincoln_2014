@@ -18,7 +18,7 @@ public class WaterPollution : MonoBehaviour {
 	void ColorChanging(){
 		GameObject[] temp;
 		temp= GameObject.FindGameObjectsWithTag("Litter");
-		Color waterColorBlack = new Color(0.0f,temp.Length/10f,0.0f,1.0f);
+		Color waterColorBlack = new Color(0.0f,temp.Length/30f,0.0f,1.0f);
 		newWaterColor = waterColorBlack;
 		water.renderer.material.SetColor("_horizonColor", Color.Lerp(water.renderer.material.GetColor("_horizonColor"), newWaterColor, Time.deltaTime * smooth));
 	}

@@ -12,8 +12,8 @@ public class Create_map : MonoBehaviour {
 	public float polution = 0;
 	
 	void Start () {
-		TileSize = 3;
-		Rows = 10;
+		TileSize = 5;
+		Rows = 6;
 		Columns = 33;
 		for(int i = 0; i<Rows;i++)
 		{
