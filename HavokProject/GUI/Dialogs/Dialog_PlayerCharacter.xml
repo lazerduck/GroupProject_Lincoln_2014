@@ -1,0 +1,24 @@
+<root>
+  <DIALOG class="RPG_GUIDialogCharacter" fullscreen="FALSE" size="440,800">
+    <frame texture="../Textures/Frame_Inventory.dds" />
+
+    <control class="VDialogTitleBar">
+      <text text="CHARACTER" color="180,180,208,255" font="../Fonts/Newtext_RG_BT_18" valign="LEFT" ofs="0,8" />
+    </control>
+
+    <!-- Close box  -->
+    <!--<control class="VDialogCloseButton" ofs="-5,0" size="22,22">
+      <image texture="../Textures/CloseButton.bmp">
+        <statemodifier state="mouseOver" 	texture="../Textures/CloseButtonHigh.bmp" />
+        <statemodifier state="selected" 	texture="../Textures/CloseButtonSel.bmp" />
+        <statemodifier state="disabled" 	texture="../Textures/CloseButtonGray.bmp" />
+      </image>
+    </control>-->
+
+    <!-- Text content. -->
+    <control class="VTextLabel" pos="38,48" size="320,48">
+      <text text="Character Info:" font="../Fonts/Newtext_RG_BT_18" color="180,180,180,255" halign="LEFT" valign="CENTER" textwrap="true" />
+    </control>
+
+  </DIALOG>
+</root>

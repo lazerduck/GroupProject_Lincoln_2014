@@ -1,0 +1,7 @@
+<root>
+  <CURSOR name="Default" texture="mouseNorm.tga" color="255,255,255,255" hotspot="2,2"/>
+
+  <defaults
+    cursor = "default"
+  />
+</root>

@@ -1,0 +1,1 @@
+vLux.exe "" -project "C:\Users\Darryl\Documents" -tempfolder "C:\Users\Darryl\Documents\name.scene.Layers" -out "name" -quiet -minimized -config "C:\Users\Darryl\Documents\name.scene.Layers\lighting.cfg"

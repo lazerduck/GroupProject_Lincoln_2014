@@ -1,0 +1,53 @@
+<root>
+  <DIALOG class="RPG_GUIDialogInventory" fullscreen="FALSE" size="440,800">
+    <frame texture="../Textures/Frame_Inventory.dds" />
+
+    <control class="VDialogTitleBar">
+      <text text="INVENTORY" color="180,180,208,255" font="../Fonts/Newtext_RG_BT_18" valign="LEFT" ofs="0,8" />
+    </control>
+
+    <!-- Close box  -->
+    <!--<control class="VDialogCloseButton" ofs="-5,0" size="22,22">
+      <image texture="../Textures/CloseButton.bmp">
+        <statemodifier state="mouseOver" 	texture="../Textures/CloseButtonHigh.bmp" />
+        <statemodifier state="selected" 	texture="../Textures/CloseButtonSel.bmp" />
+        <statemodifier state="disabled" 	texture="../Textures/CloseButtonGray.bmp" />
+      </image>
+    </control>-->
+
+    <!-- Text content. -->
+    <control class="VTextLabel" pos="38,48" size="320,48">
+      <text text="Equpped:" font="../Fonts/Newtext_RG_BT_18" color="180,180,180,255" halign="LEFT" valign="CENTER" textwrap="true" />
+    </control>
+
+    <!-- Text content. -->
+    <control class="VTextLabel" pos="38,400" size="320,48">
+      <text text="My Phatty Lootz:" font="../Fonts/Newtext_RG_BT_18" color="180,180,180,255" halign="LEFT" valign="CENTER" textwrap="true" />
+    </control>
+
+    <!-- list control -->
+    <control class="VListControl" pos="38,432" size="360,320" ID="LISTCTRL" taborder="0">
+      <background color="0,0,0,200"/>
+      <listitems>
+        <defaults color="60,80,255,255" halign="LEFT">
+          <statemodifier state="mouseOver" cursor="../Textures/Mouse.dds" color="100,120,255,255" />
+          <statemodifier state="selected" cursor="../Textures/Mouse.dds" color="140,180,255,255" />
+        </defaults>
+      </listitems>
+      <vscrollbar size="32,200" range="0,100" ticks="0" vertical="true" ID="SLIDER1">
+        <frame texture="../Textures/Media_stop.TGA" color="160,160,160,255"/>
+        <slider texture="../Textures/Media_stop.TGA" cursor="../Textures/Mouse.dds"/>
+      </vscrollbar>
+    </control>
+
+    <!-- OK button -->
+    <!--<control class="VPushButton" pos="180,760" size="80,32" ID="OK" dialogResult="OK" taborder="1">
+      <text text="OK" font="../Fonts/Newtext_RG_BT_18" color="80,120,255,255" halign="CENTER">
+        <statemodifier state="mouseOver" color="100,150,255,255" cursor="../Textures/Mouse.dds"/>
+        <statemodifier state="selected"  color="110,170,255,255" cursor="../Textures/Mouse.dds"/>
+        <statemodifier state="disabled"  color="100,100,100,255"/>
+      </text>
+    </control>-->
+
+  </DIALOG>
+</root>

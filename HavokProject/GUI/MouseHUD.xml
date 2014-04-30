@@ -1,0 +1,18 @@
+<root>
+	<DIALOG class="RPG_PlayerUIDialog_Mouse" name="ID_HUD" fullscreen="TRUE">
+		<control class="VItemContainer" ID="ID_HUD_EnergyBars" pos="256,0" size="512,44">
+			<control class="VImageControl" pos="0,4" size="512,16">
+				<image texture="Textures/ind_track.tga" stretchmode="TEXTURE_SIZE"/>
+			</control>
+			<control class="VImageControl" pos="0,24" size="512,16">
+				<image texture="Textures/ind_track.tga" stretchmode="TEXTURE_SIZE"/>
+			</control>
+			<control class="VImageControl" pos="0,4" size="512,16" ID="ID_HUD_HealthBar">
+				<image texture="Textures/ind_health.tga" stretchmode="TEXTURE_SIZE"/>
+			</control>
+			<control class="VImageControl" pos="0,24" size="512,16" ID="ID_HUD_ManaBar">
+				<image texture="Textures/ind_mana.tga" stretchmode="TEXTURE_SIZE"/>
+			</control>
+		</control>		
+	</DIALOG>
+</root>

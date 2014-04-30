@@ -1,0 +1,32 @@
+<root>
+    <DIALOG class="RPG_GUIHud" fullscreen="FALSE" size="204,74" startPosition="ParentPos">
+        <frame texture="../Textures/dlg_hudButtonFrame.tga" transparency="alpha" />
+
+        <!-- Ranged Attack button. -->
+        <control class="VPushButton" pos="5,5" size="64,64" ID="BUTTON_RANGEDATTACK" taborder="0" enabled="true">
+            <image texture="../Textures/btn_rangedAttack.tga" transparency="alpha">
+                <statemodifier state="mouseOver" color="128,128,255,255"/>
+                <statemodifier state="selected" color="208,24,24,255"/>
+                <statemodifier state="disabled" color="128,128,128,255"/>
+            </image>
+        </control>
+
+        <!-- Power Attack button. -->
+        <control class="VPushButton" pos="70,5" size="64,64" ID="BUTTON_POWERATTACK" taborder="1" enabled="true">
+            <image texture="../Textures/btn_powerAttack.tga" transparency="alpha">
+                <statemodifier state="mouseOver" color="128,128,255,255"/>
+                <statemodifier state="selected" color="208,24,24,255"/>
+                <statemodifier state="disabled" color="128,128,128,255"/>
+            </image>
+        </control>
+
+        <!-- AoE Attack button. -->
+        <control class="VPushButton" pos="135,5" size="64,64" ID="BUTTON_AOEATTACK" taborder="2" enabled="true">
+            <image texture="../Textures/btn_aoeAttack.tga" transparency="alpha">
+                <statemodifier state="mouseOver" color="128,128,255,255"/>
+                <statemodifier state="selected" color="208,24,24,255"/>
+                <statemodifier state="disabled" color="128,128,128,255"/>
+            </image>
+        </control>
+    </DIALOG>
+</root>

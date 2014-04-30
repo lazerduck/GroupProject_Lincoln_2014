@@ -1,0 +1,5 @@
+<root>
+	<CURSOR name="Default" texture="Textures/Mouse.dds"/>
+	
+	<defaults cursor="Default"/>
+</root>
