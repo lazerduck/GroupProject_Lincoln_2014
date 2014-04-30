@@ -177,7 +177,7 @@ public class ButtonBar : MonoBehaviour
 		thing = GameObject.Find ("3D Model");
 		//for the 3d camera
 		GameObject.Find ("3D GUI Camera").camera.enabled = false;
-		coins = 10;
+		coins = 1000;
 		map = this.gameObject.GetComponent <Create_map>();
 		#region sets the size of the differant windows
 		#region Buttons
@@ -818,7 +818,7 @@ public class ButtonBar : MonoBehaviour
 		case 1:
 			switch (buildingSize) {
 			case 0:
-				BuildingCost = 1;
+				BuildingCost = 100;
 				buildingthing = (GameObject)Instantiate(buildings[9]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -830,7 +830,7 @@ public class ButtonBar : MonoBehaviour
 				}
 			break;
 			case 1:
-				BuildingCost = 2;
+				BuildingCost = 300;
 				buildingthing = (GameObject)Instantiate(buildings[10]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -842,7 +842,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 2:
-				BuildingCost = 3;
+				BuildingCost = 500;
 				buildingthing = (GameObject)Instantiate(buildings[11]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -861,7 +861,7 @@ public class ButtonBar : MonoBehaviour
 		case 2:
 			switch (buildingSize) {
 			case 0:
-				BuildingCost = 1;
+				BuildingCost = 300;
 				buildingthing = (GameObject)Instantiate(buildings[15]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -873,7 +873,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 1:
-				BuildingCost = 2;
+				BuildingCost = 700;
 				buildingthing = (GameObject)Instantiate(buildings[16]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -885,7 +885,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 2:
-				BuildingCost = 3;
+				BuildingCost = 1000;
 				buildingthing = (GameObject)Instantiate(buildings[17]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -904,7 +904,7 @@ public class ButtonBar : MonoBehaviour
 		case 3:
 			switch (buildingSize) {
 			case 0:
-				BuildingCost = 1;
+				BuildingCost = 500;
 				buildingthing = (GameObject)Instantiate(buildings[6]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -916,7 +916,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 1:
-				BuildingCost = 2;
+				BuildingCost = 800;
 				buildingthing = (GameObject)Instantiate(buildings[7]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -928,7 +928,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 2:
-				BuildingCost = 3;
+				BuildingCost = 1300;
 				buildingthing = (GameObject)Instantiate(buildings[8]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -947,7 +947,7 @@ public class ButtonBar : MonoBehaviour
 		case 4:
 			switch (buildingSize) {
 			case 0:
-				BuildingCost = 1;
+				BuildingCost = 100;
 				buildingthing = (GameObject)Instantiate(buildings[12]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 12;
@@ -959,7 +959,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 1:
-				BuildingCost = 2;
+				BuildingCost = 400;
 				buildingthing = (GameObject)Instantiate(buildings[13]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -971,7 +971,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 2:
-				BuildingCost = 3;
+				BuildingCost = 700;
 				buildingthing = (GameObject)Instantiate(buildings[14]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -990,7 +990,7 @@ public class ButtonBar : MonoBehaviour
 		case 5:
 			switch (buildingSize) {
 			case 0:
-				BuildingCost = 1;
+				BuildingCost = 300;
 				buildingthing = (GameObject)Instantiate(buildings[0]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1002,7 +1002,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 1:
-				BuildingCost = 2;
+				BuildingCost = 500;
 				buildingthing = (GameObject)Instantiate(buildings[1]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1014,7 +1014,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 2:
-				BuildingCost = 3;
+				BuildingCost = 700;
 				buildingthing = (GameObject)Instantiate(buildings[2]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1033,7 +1033,7 @@ public class ButtonBar : MonoBehaviour
 		case 6:
 			switch (buildingSize) {
 			case 0:
-				BuildingCost = 1;
+				BuildingCost = 500;
 				buildingthing = (GameObject)Instantiate(buildings[3]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1045,7 +1045,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 1:
-				BuildingCost = 2;
+				BuildingCost = 1000;
 				buildingthing = (GameObject)Instantiate(buildings[4]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1057,7 +1057,7 @@ public class ButtonBar : MonoBehaviour
 				}
 				break;
 			case 2:
-				BuildingCost = 3;
+				BuildingCost = 1500;
 				buildingthing = (GameObject)Instantiate(buildings[5]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1076,7 +1076,7 @@ public class ButtonBar : MonoBehaviour
 		case 7:
 			switch (buildingSize) {
 			case 0:
-				BuildingCost = 1;
+				BuildingCost = 20;
 				buildingthing = (GameObject)Instantiate(buildings[18]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;

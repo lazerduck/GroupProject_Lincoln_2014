@@ -14,7 +14,7 @@ public class hotel_m : MonoBehaviour {
 	void Update () {
 		if (placed) {
 			NPCControl npc = np.GetComponent<NPCControl> ();
-			npc.wait *= 0.95f;
+			npc.wait *= 0.8f;
 			placed = false;
 		}
 	}
