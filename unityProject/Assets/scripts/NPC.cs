@@ -40,6 +40,12 @@ public class NPC : MonoBehaviour
 	//8 -10 Icecream
 	//11-13 fishery
 	public GameObject [] trash = new GameObject[14];
+	//alerts
+	//1 ice
+	//2 club
+	//3 shop
+	//4 litter
+	public GameObject[] display = new GameObject[4];
 	void Start()
 	{
 		CameraObj = GameObject.FindGameObjectWithTag ("theCamera");
@@ -139,6 +145,11 @@ public class NPC : MonoBehaviour
 		}
 		if(clenlinessNeed > 10)
 		{
+			clenlinessNeed = 0;
+			GameObject disp = (GameObject)Instantiate(display[3]);
+			disp.transform.position = this.transform.position;
+			disp.transform.Translate(new Vector3(2,0,0));
+			Destroy(disp,0.1f);
 			leave();
 		}
 		//bobbing
@@ -164,6 +175,10 @@ public class NPC : MonoBehaviour
 		}
 		//check if any of the need timers have run out
 		if (iceCreamNeed < 0) {
+			GameObject disp = (GameObject)Instantiate(display[0]);
+			disp.transform.position = this.transform.position;
+			disp.transform.Translate(new Vector3(2,0,0));
+			Destroy(disp,0.1f);
 			needing = true;
 			GameObject[] obj = GameObject.FindGameObjectsWithTag("Icecream");
 			float dist = float.MaxValue;
@@ -185,6 +200,10 @@ public class NPC : MonoBehaviour
 			}
 		}
 		if (clubNeed < 0) {
+			GameObject disp = (GameObject)Instantiate(display[1]);
+			disp.transform.position = this.transform.position;
+			disp.transform.Translate(new Vector3(2,0,0));
+			Destroy(disp,0.1f);
 			needing = true;
 			GameObject[] obj = GameObject.FindGameObjectsWithTag("Club");
 			float dist = float.MaxValue;
@@ -206,6 +225,10 @@ public class NPC : MonoBehaviour
 			}
 		}
 		if (giftNeed < 0) {
+			GameObject disp = (GameObject)Instantiate(display[2]);
+			disp.transform.position = this.transform.position;
+			disp.transform.Translate(new Vector3(2,0,0));
+			Destroy(disp,0.1f);
 			needing = true;
 			GameObject[] obj = GameObject.FindGameObjectsWithTag("Shop");
 			float dist = float.MaxValue;
