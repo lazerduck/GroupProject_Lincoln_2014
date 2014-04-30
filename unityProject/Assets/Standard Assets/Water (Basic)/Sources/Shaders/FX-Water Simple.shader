@@ -57,7 +57,11 @@ ENDCG
 // Fragment program
 
 Subshader {
-	Tags { "RenderType"="Opaque" }
+	Tags { "Queue"="Transparent" "RenderType" = "Transparent" }
+
+        Blend SrcAlpha OneMinusSrcAlpha
+
+        ColorMask RGB
 	Pass {
 
 CGPROGRAM
@@ -91,7 +95,11 @@ ENDCG
 
 // three texture, cubemaps
 Subshader {
-	Tags { "RenderType"="Opaque" }
+	Tags { "Queue"="Transparent" "RenderType" = "Transparent" }
+
+        Blend SrcAlpha OneMinusSrcAlpha
+
+        ColorMask RGB
 	Pass {
 		Color (0.5,0.5,0.5,0.5)
 		SetTexture [_MainTex] {

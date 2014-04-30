@@ -75,6 +75,8 @@ public class ButtonBar : MonoBehaviour
 	public Texture ButtonTexture;
 	public Texture ButtonBarTexture;
 	public Texture WindowBackgroundTexture;
+	public Texture LitterIconTexture;
+	public Texture WarningTexture;
 	#endregion
 	#endregion
 	#region Skin
@@ -87,6 +89,7 @@ public class ButtonBar : MonoBehaviour
 	bool ShowInfomationWindow = false;
 	bool ShowHelpWindow = false;
 	bool ShowOptionWindow = false;
+	bool ShowWarningWindow = false;
 	bool RecyclingBin = false;
 	#endregion
 	#region Windows Lock
@@ -122,6 +125,7 @@ public class ButtonBar : MonoBehaviour
 	public Rect helpWindowPostion = new Rect (0, 0, 0, 0);
 	public Rect InfomationWindowPostion = new Rect (0, 0, 0, 0);
 	public Rect OptionWindowPostion = new Rect (0, 0, 0, 0);
+	public Rect WarningWindowPostion = new Rect (0, 0, 0, 0);
 	#endregion
 	#endregion
 	#region Text Field in info window
@@ -155,7 +159,7 @@ public class ButtonBar : MonoBehaviour
 	//totals
 	int coins  = 0;
 	int epoint = 0;
-	float polution = 0;
+	float pollution = 0;
 	
 	//MapPosistion
 	public float ScrollMap;
@@ -169,7 +173,21 @@ public class ButtonBar : MonoBehaviour
 
 
 	GameObject np;
-					
+				
+	bool quitButton = false;
+	int curPolution;
+	string leveltoload = "Start";
+
+	bool n10 = false;
+	bool n20 = false;
+	bool n30 = false;
+	bool n40 = false;
+	bool n50 = false;
+	bool n60 = false;
+	bool n70 = false;
+	bool n80 = false;
+	bool n90 = false;
+	bool n100 = false;
 	// Use this for initialization
 	void Start ()
 	{
@@ -181,7 +199,7 @@ public class ButtonBar : MonoBehaviour
 		map = this.gameObject.GetComponent <Create_map>();
 		#region sets the size of the differant windows
 		#region Buttons
-		ButtonBarWindowPostion = new Rect (10, 465, 60, 70);
+		ButtonBarWindowPostion = new Rect (10, 465, 60, 100);
 		ButtonWindowPostion = new Rect (100, 465, 370, 70);
 		helpButtonWindowPostion = new Rect (Screen.width - 60, Screen.height * 0.005f, 50, 50);
 		OptionButtonWindowPostion = new Rect (Screen.width - 120, Screen.height * 0.005f, 50, 50);
@@ -190,6 +208,7 @@ public class ButtonBar : MonoBehaviour
 		helpWindowPostion = new Rect (Screen.width * 0.5f - 300, Screen.height * 0.2f, 600, 250);
 		InfomationWindowPostion = new Rect (Screen.width * 0.5f - 300, Screen.height * 0.2f, 600, 250);
 		OptionWindowPostion = new Rect (Screen.width * 0.5f - 300, Screen.height * 0.2f, 600, 250);
+		WarningWindowPostion = new Rect (Screen.width * 0.5f - 300, Screen.height * 0.2f, 200, 150);
 		#endregion
 		#endregion	
 		ScrollMap = 50;
@@ -199,11 +218,25 @@ public class ButtonBar : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			if(quitButton == false)
+			{
+				quitButton = true;
+			} else{
+				quitButton = false;
+			}
+			
+			
+			Debug.Log (quitButton);
+		}
+
+		curPolution = (int)map.polution;
+		Debug.Log (ShowWarningWindow);
 	}
 	void AddMoney(int amount)
 	{
 		coins += amount;
+
 	}
 	private void OnGUI ()
 	{
@@ -211,12 +244,12 @@ public class ButtonBar : MonoBehaviour
 		#region Skins and styles
 		GUI.skin = mySkin;
 		#endregion
-		
+	
 		#region Labels
 		GUI.Box (new Rect (0, 0, 470, 40), "");
 		GUI.Label (new Rect (10, 10, 150, 20), "Coins :" + coins);
 		GUI.Label (new Rect (110, 10, 150, 20), "E-Points : " + epoint);
-		GUI.Label (new Rect (220, 10, 150, 20), "Polution level : " + map.polution);
+		GUI.Label (new Rect (220, 10, 150, 20), "Pollution level : " + map.polution);
 		GameObject[] NPCTotal = GameObject.FindGameObjectsWithTag("NPC");
 		NPCControl npc = np.GetComponent<NPCControl> ();
 		GUI.Label (new Rect (350, 10, 150, 20), "Visitors : "+NPCTotal.Length+"\\"+npc.totalNpc);
@@ -227,7 +260,7 @@ public class ButtonBar : MonoBehaviour
 		ButtonBarWindowPostion = CheckBounds (GUI.Window (0, ButtonBarWindowPostion, ToggleButtonWindow, ""));
 		helpButtonWindowPostion = CheckBounds (GUI.Window (1, helpButtonWindowPostion, HelpButtonWindow, ""));
 		OptionButtonWindowPostion = CheckBounds (GUI.Window (2, OptionButtonWindowPostion, OptionButtonWindow, ""));
-		
+
 		#region to show or not to show windows
 		//infomation window
 		if (ShowInfomationWindow == true) {
@@ -242,8 +275,58 @@ public class ButtonBar : MonoBehaviour
 		if (ShowOptionWindow == true) {
 			OptionWindowPostion = CheckBounds (GUI.Window (6, OptionWindowPostion, OptionWindow, "Options"));
 		}	
+
+		if (ShowWarningWindow == true){
+			WarningWindowPostion = CheckBounds (GUI.Window (7, WarningWindowPostion, WarningWindow, "Warning!"));
+		}
 		#endregion
 		#endregion
+
+
+		if (curPolution >= 100&& n100 ==false) {
+			n100 = true;
+			ShowWarningWindow = true;
+		} else if (curPolution >= 90&& n90 ==false) {
+			n90 = true;
+			ShowWarningWindow = true;
+		} else if (curPolution >= 80&& n80 ==false) {
+			n80 = true;
+			ShowWarningWindow = true;
+		} else if (curPolution >= 70&& n70 ==false) {
+			n70 = true;
+			ShowWarningWindow = true;
+		} else if (curPolution >= 60&& n60 ==false) {
+			n60 = true;
+			ShowWarningWindow = true;
+		} else if (curPolution >= 50&& n50 ==false) {
+			n50 = true;
+			ShowWarningWindow = true;
+		} else if (curPolution >= 40&& n40 ==false) {
+			n40 = true;
+			ShowWarningWindow = true;
+		} else if (curPolution >= 30&& n30 ==false) {
+			n30 = true;
+			ShowWarningWindow = true;
+		} else if (curPolution >= 20&& n20 ==false) {
+			n20 = true;
+			ShowWarningWindow = true;
+		} else if (curPolution >= 10 && n10 ==false) {
+			n10 = true;
+			ShowWarningWindow = true;
+		}
+
+		//pressing escape to quit ect
+		if (quitButton == true) {
+			GUI.Box(new Rect (Screen.width/2-100, Screen.height/2*0.4f, 200, 100),"Are you sure you want to quit?");
+						if (GUI.Button (new Rect (Screen.width/2-100, Screen.height/2*0.4f+30, 200, 30), "Yes"))
+			{
+				Application.LoadLevel(leveltoload);		
+			}
+			if (GUI.Button (new Rect (Screen.width/2-100, Screen.height/2*0.4f+65, 200, 30), "no"))
+			{
+				quitButton=false;
+			}
+				}
 	}
 	
 	
@@ -254,66 +337,70 @@ public class ButtonBar : MonoBehaviour
 		if (ShowButtonBarWindow == false){
 			OpenorClose = ">";
 		}
-		GUI.DrawTexture (new Rect (0, 0, 550, 70), ButtonBarTexture, ScaleMode.ScaleToFit, true, 10.0F);
-		if (GUI.Button (new Rect (10, 10, 40, 50), OpenorClose)) {
-			ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 60, 70);
+		GUI.DrawTexture (new Rect (0, 0, 610, 100), ButtonBarTexture, ScaleMode.ScaleToFit, true, 6.5F);
+		if (GUI.Button (new Rect (10, 40, 40, 50), OpenorClose)) {
+			ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 60, 100);
 			ShowButtonBarWindow = !ShowButtonBarWindow;
 
 				}
 		
 		if (ShowButtonBarWindow == true) {
 			OpenorClose = "<";
-						ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 550, 70);
+						ButtonBarWindowPostion = new Rect (ButtonBarWindowPostion.x, ButtonBarWindowPostion.y, 610, 100);
 					
-						if (GUI.Button (new Rect (70, 10, 50, 50), new GUIContent (icecreamIconTexture, "Ice Cream Shop"))) {
+						if (GUI.Button (new Rect (70, 40, 50, 50), new GUIContent (icecreamIconTexture, "Ice Cream Shop"))) {
 								buildingSize = 0;
 								Logic (1);					
 						}		
 
 			
-						if (GUI.Button (new Rect (130, 10, 50, 50), new GUIContent (giftIconTexture, "Gift Shop"))) {
+						if (GUI.Button (new Rect (130, 40, 50, 50), new GUIContent (giftIconTexture, "Gift Shop"))) {
 								buildingSize = 0;
 								Logic (2);
 						}		
 			
 			
-						if (GUI.Button (new Rect (190, 10, 50, 50), new GUIContent (hotelIconTexture, "Hotel"))) {
+						if (GUI.Button (new Rect (190, 40, 50, 50), new GUIContent (hotelIconTexture, "Hotel"))) {
 								buildingSize = 0;
 								Logic (3);
 						}		
 			
 			
-						if (GUI.Button (new Rect (250, 10, 50, 50), new GUIContent (lifeguardIconTexture, "Lifeguard"))) {
+						if (GUI.Button (new Rect (250, 40, 50, 50), new GUIContent (lifeguardIconTexture, "Lifeguard"))) {
 								buildingSize = 0;
 								Logic (4);
 						}
 			
 			
-						if (GUI.Button (new Rect (310, 10, 50, 50), new GUIContent (clubsIconTexture, "Club"))) {
+						if (GUI.Button (new Rect (310, 40, 50, 50), new GUIContent (clubsIconTexture, "Club"))) {
 								buildingSize = 0;
 								Logic (5);
 						}
 			
 			
-						if (GUI.Button (new Rect (370, 10, 50, 50), new GUIContent (fisheriesIconTexture, "Fisheries"))) {	
+						if (GUI.Button (new Rect (370, 40, 50, 50), new GUIContent (fisheriesIconTexture, "Fisheries"))) {	
 								buildingSize = 0;
 								Logic (6);	
 						} 
 
-						if (GUI.Button (new Rect (430, 10, 50, 50), new GUIContent (BinIconTexture, "Recycling Bin"))) {	
+						if (GUI.Button (new Rect (430, 40, 50, 50), new GUIContent (BinIconTexture, "Recycling Bin"))) {	
 								buildingSize = 0;
 								Logic (7);	
 						} 
-
-						if (GUI.Button (new Rect (490, 10, 50, 50), new GUIContent (DeleteIconTexture, "Delete"))) {	
+						if (GUI.Button (new Rect (490, 40, 50, 50), new GUIContent (LitterIconTexture, "Litter Picker"))) {	
+				buildingSize = 0;
+				Logic (8);	
+				
+			} 
+						if (GUI.Button (new Rect (550, 40, 50, 50), new GUIContent (DeleteIconTexture, "Delete"))) {	
 								//Delete
 								int[] SendNum = new int[2];
 								SendNum [0] = -1;
 								SendNum [1] = -1;
 								buildingcont.SendMessage ("Build", SendNum);
-								//Logic (6);	
+									
 						} 
-						GUI.Label (new Rect (250, 0, 100, 40), GUI.tooltip);
+						GUI.Label (new Rect (290, 10, 100, 40), GUI.tooltip);
 				} 	
 		
 		if (LockButtonBarUI == false) {
@@ -805,6 +892,12 @@ public class ButtonBar : MonoBehaviour
 				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
 				RecyclingBin = true;
 				break;
+			case 8:
+				//Litter Picker
+				buildingType = "Litter Picker";
+				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
+				RecyclingBin = true;
+				break;
 			}
 		}
 	}
@@ -1092,7 +1185,20 @@ public class ButtonBar : MonoBehaviour
 			#endregion
 		}
 	}
-	
+
+	private void WarningWindow (int id){
+		GUI.Box (new Rect (0, 0, WarningWindowPostion.width, WarningWindowPostion.height), "");
+		GUI.Label (new Rect (WarningWindowPostion.width/2-5, 20, 50, 50), WarningTexture);
+		GUI.Label (new Rect (WarningWindowPostion.width/2-40, 80, 150, 50), "Pollution at " + curPolution);
+
+		if (GUI.Button (new Rect (WarningWindowPostion.width/2-70, WarningWindowPostion.width/2, 140, 30), "OK")) {
+			ShowWarningWindow = !ShowWarningWindow;
+			Debug.Log ("Options Button Clicked");
+		}
+
+		GUI.DragWindow ();
+
+		}
 	Rect CheckBounds (Rect r)
 	{
 		
