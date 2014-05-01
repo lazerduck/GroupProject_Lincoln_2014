@@ -219,6 +219,8 @@ public class ButtonBar : MonoBehaviour
 	string InfomationMediumFisherie =  "This larger version of the fishery is finding much more business, thanks to their new fishing methods. Money will be coming in much faster but so will pollution. The new ships and tools used are great for the economy but really push the boundaries on whats environmentally okay. Dead fish will slowly start popping up on the beach, meaning more bins and litter pickers are needed to keep the fishery in check.";
 	string InfomationLargeFisherie = "Although not necessarily becoming a better business, the large fishery produces slightly less pollution than the medium at the cost of a larger price tag. This fishery tries its best to remain environmentally friendly whilst still turning a profit. Remember to keep the trash produced in check though.";
 
+	string TheMessage;
+	bool GameOver;
 	// Use this for initialization
 	void Start ()
 	{
@@ -257,9 +259,7 @@ public class ButtonBar : MonoBehaviour
 				quitButton = false;
 			}
 			
-			
-			Debug.Log (quitButton);
-		}
+				}
 
 		curPolution = (int)map.polution;
 		Debug.Log (ShowWarningWindow);
@@ -316,33 +316,44 @@ public class ButtonBar : MonoBehaviour
 
 		if (curPolution >= 100&& n100 ==false) {
 			n100 = true;
+			TheMessage = "The pollution at 100  \nGame Over";
+			GameOver = true;
 			ShowWarningWindow = true;
 		} else if (curPolution >= 90&& n90 ==false) {
 			n90 = true;
+			TheMessage = "The pollution is over 90  \nSea life may never return!";
 			ShowWarningWindow = true;
 		} else if (curPolution >= 80&& n80 ==false) {
 			n80 = true;
+			TheMessage = "The pollution is over 80  \nAll the sea life is dead!";
 			ShowWarningWindow = true;
 		} else if (curPolution >= 70&& n70 ==false) {
-			n70 = true;
+			n70 = true;	
+			TheMessage = "The pollution is over 10  \nMost the sea life is dead!";
 			ShowWarningWindow = true;
 		} else if (curPolution >= 60&& n60 ==false) {
 			n60 = true;
+			TheMessage = "The pollution is over 60  \nThe sea is very polluted!";
 			ShowWarningWindow = true;
 		} else if (curPolution >= 50&& n50 ==false) {
 			n50 = true;
+			TheMessage = "The pollution is over 50  \nA lot of the sea life is dead";
 			ShowWarningWindow = true;
 		} else if (curPolution >= 40&& n40 ==false) {
 			n40 = true;
+			TheMessage = "The pollution is over 40  \nThe fish are begining to die";
 			ShowWarningWindow = true;
 		} else if (curPolution >= 30&& n30 ==false) {
 			n30 = true;
+			TheMessage = "The pollution is over 30  \nThe sea life is under threat";
 			ShowWarningWindow = true;
 		} else if (curPolution >= 20&& n20 ==false) {
 			n20 = true;
+			TheMessage = "The pollution is over 20  \nThe sea has become polluted";
 			ShowWarningWindow = true;
 		} else if (curPolution >= 10 && n10 ==false) {
 			n10 = true;
+			TheMessage = "The pollution is over 10  \nKeep and eye on it";
 			ShowWarningWindow = true;
 		}
 
@@ -892,6 +903,7 @@ public class ButtonBar : MonoBehaviour
 	{
 		
 		if (CurSelection == OldSelection && ShowInfomationWindow == true) {
+			GameObject.Find ("3D GUI Camera").camera.enabled = false;
 			ShowInfomationWindow = false;
 		} else {
 			OldSelection = CurSelection;
@@ -1275,12 +1287,15 @@ public class ButtonBar : MonoBehaviour
 	private void WarningWindow (int id){
 		GUI.Box (new Rect (0, 0, WarningWindowPostion.width, WarningWindowPostion.height), "");
 		GUI.Label (new Rect (WarningWindowPostion.width/2-5, 20, 50, 50), WarningTexture);
-		GUI.Label (new Rect (WarningWindowPostion.width/2-40, 80, 150, 50), "Pollution at " + curPolution);
+		GUI.Label (new Rect (WarningWindowPostion.width/2-65, 80, 150, 50), TheMessage);
 
-		if (GUI.Button (new Rect (WarningWindowPostion.width/2-70, WarningWindowPostion.width/2, 140, 30), "OK")) {
+		if (GUI.Button (new Rect (WarningWindowPostion.width/2-70, WarningWindowPostion.width/2+15, 140, 30), "OK")) {
+			if (GameOver == true){
+				Application.LoadLevel(leveltoload);		
+			}else{
 			ShowWarningWindow = !ShowWarningWindow;
-			Debug.Log ("Options Button Clicked");
-		}
+			}
+			}
 
 		GUI.DragWindow ();
 

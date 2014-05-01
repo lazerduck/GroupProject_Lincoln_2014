@@ -74,8 +74,12 @@ public class NPC : MonoBehaviour
 		this.transform.LookAt (GoalPos);
 		this.transform.position = Vector3.MoveTowards (this.transform.position, GoalPos, speed * Time.deltaTime);
 		//this.transform.position = new Vector3 (this.transform.position.x, 1, this.transform.position.z);
-		if (goHome && !needing) {
+		if (goHome) {
+			iceCreamNeed = 100;
+			clubNeed = 100;
+			giftNeed = 100;
 			GoalPos = new Vector3(0,0,4);
+			needing = false;
 		}
 		if (!needing) {
 			if (Vector3.Distance (this.transform.position, GoalPos) < 3) {
@@ -200,7 +204,6 @@ public class NPC : MonoBehaviour
 		}
 		if(clenlinessNeed > 10)
 		{
-			clenlinessNeed = 0;
 			GameObject disp = (GameObject)Instantiate(display[3]);
 			disp.transform.position = this.transform.position;
 			disp.transform.Translate(new Vector3(2,0,0));

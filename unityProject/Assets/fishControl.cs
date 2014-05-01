@@ -10,7 +10,7 @@ public class fishControl : MonoBehaviour {
 	int pollution = 0;
 	void Start () {
 	//-2 to -3.5
-		for (int i = 0; i<30; i++) {
+		for (int i = 0; i<50; i++) {
 						float xpos = Random.Range (0, 100);
 						float ypos = Random.Range (400, 700);
 						ypos *= -0.01f;
@@ -18,14 +18,14 @@ public class fishControl : MonoBehaviour {
 						temp.transform.position = new Vector3 (xpos, -2, ypos);
 						fish.Add (temp);
 				}
-		pop = 30;
+		pop = 50;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		GameObject[] pol = GameObject.FindGameObjectsWithTag ("Litter");
 		pollution = pol.Length;
-		pop = 30 - pollution;
+		pop = 30 - pollution/2;
 		if (pop < 0) {
 			pop = 0;
 				}
