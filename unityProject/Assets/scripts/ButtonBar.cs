@@ -188,6 +188,37 @@ public class ButtonBar : MonoBehaviour
 	bool n80 = false;
 	bool n90 = false;
 	bool n100 = false;
+
+	//ice cream		1
+	//gift shop		2
+	//hotel			3
+	//lifeguard		4
+	//clubs			5
+	//fisheries		6
+	string InfomationSmallIceCream = "Building a small ice cream shop will allow for a small percentage of income from the sale of ice cream. Make sure those wrappers, dropped ice cream and sticks do not end up in the sea though. Although not an immediate problem, Ice Cream Shops can eventually cause significant damage to the environment.";
+	string InfomationMediumIceCream = "This mobile ice cream van will accommodate more customers per day. The vans products come mainly in wrappers, however, which are non-biodegradable. Make sure those are dealt with before they start costing fish their lives.";
+	string InfomationLargeIceCream = "With the new permanent Ice Cream Shop pollution will not increase any further. Although business will increase, causing more trash, the shop itself produces little. Compared to the gas guzzling van, this shop is an upgrade in a cleaner direction.";
+
+	string InfomationSmallGiftShop = "The shop is generates a steady, moderate income with an equally moderate pollution level. Plastic bags, receipts and cardboard boxes can slowly litter the beach if left unchecked. The shop can make for a nice addition to the beach, however, so long as it is catered for correctly.";
+	string InfomationMediumGiftShop = "A medium shop. Increased profit and increased pollution. The increased profits can easily be used to keep the increased pollution in check. Bins and litter pickers can be expensive but are ultimately essential.";
+	string InfomationLargeGiftShop = "The number of plastic bags that wind up littering the beach is increased further. Those plastic bags catered customers, however. Make sure that larger income goes toward keeping the beach clean though. Plastic bags and other trash can rapidly cause an environmental issue if left unchecked.";
+
+	string InfomationSmallHotel = "A small privately run Bed & Breakfast is a classic trademark of the sea side, usually a 2-3 room capacity. These building will mean your guests will show up quicker. As more visitors show up, pollution levels will slightly rise as the visitors will be around longer to drop litter.";
+	string InfomationMediumHotel = "A medium sized hotel with a larger maximum capacity. Plenty of people from all over will be staying for now meaning more frequently arriving people. Just remember to cater for the increased litter from the increased customers!";
+	string InfomationLargeHotel =  "A large hotel can accommodate a massive amount of customers, causing more to turn up. More money from the larger amount of customers will be a nice boost to the economy. With the money increase, however, the increased pollution can sometimes be forgotten. do not let it get out of hand.";
+
+	string InfomationSmallLifeguard = "The lifeguard stand is one of the most important parts of running a beach. Having someone around to watch over the beach will increase the maximum number of visitors possible at one time. Luckily, this boost comes with no increased pollution besides the increased business.";
+	string InfomationMediumLifeguard = "The maximum number of visitors is increased once again. Although this has no immediate effect on the environment, it is easy to forget that more people mean more business. More business means more pollution.";
+	string InfomationLargeLifeguard = "The maximum boost to visitor number. Businesses will thank you but will the fish? More visitors means more trash. Remember to use your increased money to keep the trash at bay.";
+
+	string InfomationSmallClub = "Clubs are large contributors to the pollution and trash problems on beaches. All things sold in clubs come in cans, glasses and bottles, all of which are very dangerous to aquatic life. Their large income can be a great boost to the economy, providing things are in place to deal with the large amount of trash produced.";
+	string InfomationMediumClub="As a club expands so does its customer base; normally this would be a good thing but a larger customer base means more trash. The pockets of this clubs owner will be filling up quickly but most of the profit will have to go on marine conservation. Is the larger income worth the stronger pollution?";
+	string InfomationLargeClub = "The largest a club can hope to get. Producing a huge amount of pollution every day, this club will help in the terms of economy but everything comes at a cost. The cans, bottles and glasses left behind by customers pose a massive threat to aquatic life and can also be very expensive to deal with.";
+	
+	string InfomationSmallFisherie = "Fisheries are good for the economy and aren’t bad pollutants, in moderation. Fisheries make their money from fish which, so long as there isn’t already a fish shortage,should not be a problem. Just remember though, there are only so many fish. Having too many fisheries will potentially cause a large amount of damage.";
+	string InfomationMediumFisherie =  "This larger version of the fishery is finding much more business, thanks to their new fishing methods. Money will be coming in much faster but so will pollution. The new ships and tools used are great for the economy but really push the boundaries on whats environmentally okay. Dead fish will slowly start popping up on the beach, meaning more bins and litter pickers are needed to keep the fishery in check.";
+	string InfomationLargeFisherie = "Although not necessarily becoming a better business, the large fishery produces slightly less pollution than the medium at the cost of a larger price tag. This fishery tries its best to remain environmentally friendly whilst still turning a profit. Remember to keep the trash produced in check though.";
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -430,7 +461,7 @@ public class ButtonBar : MonoBehaviour
 		GUI.Box (new Rect (200, 50, 365, 125), "");
 		GUILayout.BeginArea (new Rect (200, 50, 400, 125));
 		scrollInfomationPosition = GUILayout.BeginScrollView (scrollInfomationPosition, GUILayout.Width (390), GUILayout.Height (125));
-		GUILayout.Label (Infomation);
+		GUILayout.Label (Infomation, GUILayout.MaxWidth(360));
 		GUILayout.EndScrollView ();	
 		GUILayout.EndArea ();
 		
@@ -498,6 +529,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (icecreamSmallTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Small Ice cream shop");
+		GUILayout.Label (InfomationSmallIceCream);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -508,6 +540,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (icecreamMediumTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Medium Ice cream shop");
+		GUILayout.Label (InfomationMediumIceCream);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -518,6 +551,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (icecreamLargeTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Large Ice cream shop");
+		GUILayout.Label (InfomationLargeIceCream);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -532,6 +566,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (giftSmallTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Small Gift Shop");
+		GUILayout.Label (InfomationSmallGiftShop);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -542,6 +577,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (giftMediumTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Medium Gift shop");
+		GUILayout.Label (InfomationMediumGiftShop);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -552,6 +588,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (giftLargeTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Large Gift shop");
+		GUILayout.Label (InfomationLargeGiftShop);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -566,6 +603,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (hotelSmallTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Small Hotel");
+		GUILayout.Label (InfomationSmallHotel);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -576,6 +614,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (hotelMediumTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Medium Hotel");
+		GUILayout.Label (InfomationMediumHotel);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -586,6 +625,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (hotelLargeTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Large Hotel");
+		GUILayout.Label (InfomationLargeHotel);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -600,6 +640,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (lifeguardSmallTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Small Life Guard");
+		GUILayout.Label (InfomationSmallLifeguard);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -610,6 +651,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (lifeguardMediumTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Medium Life Guard");
+		GUILayout.Label (InfomationMediumLifeguard);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -620,6 +662,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (lifeguardLargeTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Large Life Guard");
+		GUILayout.Label (InfomationLargeLifeguard);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -634,6 +677,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (clubsSmallTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Small Club");
+		GUILayout.Label (InfomationSmallClub);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -644,6 +688,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (clubsMediumTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Medium Club");
+		GUILayout.Label (InfomationMediumClub);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -654,6 +699,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (clubsLargeTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Large Club");
+		GUILayout.Label (InfomationLargeClub);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -668,6 +714,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (fisheriesSmallTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Small Fisherie");
+		GUILayout.Label (InfomationSmallFisherie);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -678,6 +725,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (fisheriesMediumTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Medium Fisherie");
+		GUILayout.Label (InfomationMediumFisherie);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -688,6 +736,7 @@ public class ButtonBar : MonoBehaviour
 		GUILayout.Box (fisheriesLargeTexture, GUILayout.Width (Size), GUILayout.Height (Size));
 		
 		GUILayout.Label ("Large Fisherie");
+		GUILayout.Label (InfomationLargeFisherie);
 		GUILayout.EndHorizontal ();
 		#endregion
 		
@@ -853,49 +902,49 @@ public class ButtonBar : MonoBehaviour
 			case 1:
 				//ice cream
 				buildingType = "Ice Cream Shop";
-				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
+				//Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
 				RecyclingBin = false;
 				break;
 			case 2:
 				//gift shop
 				buildingType = "Gift Shop";
-				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
+				//Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
 				RecyclingBin = false;
 				break;
 			case 3:
 				//hotel
 				buildingType = "Hotel";
-				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
+				//Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
 				RecyclingBin = false;
 				break;
 			case 4:
 				//lifeguard
 				buildingType = "Life Guard";
-				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
+				//Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
 				RecyclingBin = false;
 				break;
 			case 5:
 				//clubs
 				buildingType = "Club";
-				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
+			//	Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
 				RecyclingBin = false;
 				break;
 			case 6:
 				//fisheries
 				buildingType = "Fisheries";
-				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
+				//Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
 				RecyclingBin = false;
 				break;
 			case 7:
 				//Bin
 				buildingType = "Recycling Bin";
-				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
+			//	Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
 				RecyclingBin = true;
 				break;
 			case 8:
 				//Litter Picker
 				buildingType = "Litter Picker";
-				Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
+				//Infomation = "This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test This is a test";
 				RecyclingBin = true;
 				break;
 			}
@@ -912,6 +961,7 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 100;
+				Infomation = InfomationSmallIceCream;
 				buildingthing = (GameObject)Instantiate(buildings[9]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -924,6 +974,7 @@ public class ButtonBar : MonoBehaviour
 			break;
 			case 1:
 				BuildingCost = 300;
+				Infomation = InfomationMediumIceCream;
 				buildingthing = (GameObject)Instantiate(buildings[10]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -936,6 +987,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 2:
 				BuildingCost = 500;
+				Infomation = InfomationLargeIceCream;
 				buildingthing = (GameObject)Instantiate(buildings[11]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -955,6 +1007,7 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 300;
+				Infomation = InfomationSmallGiftShop;
 				buildingthing = (GameObject)Instantiate(buildings[15]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -967,6 +1020,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 1:
 				BuildingCost = 700;
+				Infomation = InfomationMediumGiftShop;
 				buildingthing = (GameObject)Instantiate(buildings[16]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -979,6 +1033,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 2:
 				BuildingCost = 1000;
+				Infomation = InfomationLargeGiftShop;
 				buildingthing = (GameObject)Instantiate(buildings[17]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -998,6 +1053,7 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 500;
+				Infomation = InfomationSmallHotel;
 				buildingthing = (GameObject)Instantiate(buildings[6]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1010,6 +1066,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 1:
 				BuildingCost = 800;
+				Infomation = InfomationMediumHotel;
 				buildingthing = (GameObject)Instantiate(buildings[7]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1022,6 +1079,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 2:
 				BuildingCost = 1300;
+				Infomation = InfomationLargeHotel;
 				buildingthing = (GameObject)Instantiate(buildings[8]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1041,6 +1099,7 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 100;
+				Infomation = InfomationSmallLifeguard;
 				buildingthing = (GameObject)Instantiate(buildings[12]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 12;
@@ -1053,6 +1112,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 1:
 				BuildingCost = 400;
+				Infomation =InfomationMediumLifeguard;
 				buildingthing = (GameObject)Instantiate(buildings[13]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1065,6 +1125,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 2:
 				BuildingCost = 700;
+				Infomation = InfomationLargeLifeguard;
 				buildingthing = (GameObject)Instantiate(buildings[14]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1084,6 +1145,7 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 300;
+				Infomation = InfomationSmallClub;
 				buildingthing = (GameObject)Instantiate(buildings[0]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1096,6 +1158,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 1:
 				BuildingCost = 500;
+				Infomation = InfomationMediumClub;
 				buildingthing = (GameObject)Instantiate(buildings[1]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1108,6 +1171,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 2:
 				BuildingCost = 700;
+				Infomation = InfomationLargeClub;
 				buildingthing = (GameObject)Instantiate(buildings[2]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1127,6 +1191,7 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 500;
+				Infomation = InfomationSmallFisherie;
 				buildingthing = (GameObject)Instantiate(buildings[3]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1139,6 +1204,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 1:
 				BuildingCost = 1000;
+				Infomation = InfomationMediumFisherie;
 				buildingthing = (GameObject)Instantiate(buildings[4]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1151,6 +1217,7 @@ public class ButtonBar : MonoBehaviour
 				break;
 			case 2:
 				BuildingCost = 1500;
+				Infomation = InfomationLargeFisherie;
 				buildingthing = (GameObject)Instantiate(buildings[5]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1170,6 +1237,8 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 20;
+				Infomation = "This recycling bin sits on your beach and allows Litter Pickers to keep the area clean; these are expensive in number but are essential to the beachs survival. The more bins, the less distance a picker has to travel before being able to remove some litter.";
+
 				buildingthing = (GameObject)Instantiate(buildings[18]);
 				buildingthing.transform.position = thing.transform.position;
 				buildingthing.layer = 8;
@@ -1186,6 +1255,7 @@ public class ButtonBar : MonoBehaviour
 			switch (buildingSize) {
 			case 0:
 				BuildingCost = 500;
+				Infomation = "Litter Pickers are essential to the beachs welfare. The litter picker can be hired for a short period of time. During this time they will hunt down any trash lying around and put it in the nearest bin, lowering the pollution level. They can be expensive in number but when accommodating large businesses, money should be of little problem.";
 //		  		buildingthing = (GameObject)Instantiate(buildings[18]);
 //				buildingthing.transform.position = thing.transform.position;
 //				buildingthing.layer = 8;
