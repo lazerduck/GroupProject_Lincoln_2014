@@ -228,7 +228,7 @@ public class ButtonBar : MonoBehaviour
 		thing = GameObject.Find ("3D Model");
 		//for the 3d camera
 		GameObject.Find ("3D GUI Camera").camera.enabled = false;
-		coins = 1000;
+		coins = 10000;
 		map = this.gameObject.GetComponent <Create_map>();
 		#region sets the size of the differant windows
 		#region Buttons

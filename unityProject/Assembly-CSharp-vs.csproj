@@ -39,13 +39,22 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>A:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>A:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\RagePixel\Code\IRagePixel.cs" />
+     <Compile Include="Assets\RagePixel\Code\RagePixelAnimation.cs" />
+     <Compile Include="Assets\RagePixel\Code\RagePixelBitmap.cs" />
+     <Compile Include="Assets\RagePixel\Code\RagePixelCamera.cs" />
+     <Compile Include="Assets\RagePixel\Code\RagePixelCell.cs" />
+     <Compile Include="Assets\RagePixel\Code\RagePixelRow.cs" />
+     <Compile Include="Assets\RagePixel\Code\RagePixelSettings.cs" />
+     <Compile Include="Assets\RagePixel\Code\RagePixelSprite.cs" />
+     <Compile Include="Assets\RagePixel\Code\RagePixelSpriteSheet.cs" />
      <Compile Include="Assets\ShowSkin.cs" />
      <Compile Include="Assets\club_l.cs" />
      <Compile Include="Assets\fishControl.cs" />
@@ -74,6 +83,9 @@
      <Compile Include="Assets\scripts\WaterPollution.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+     <None Include="Assets\RagePixel\readme.txt" />
+     <None Include="Assets\RagePixel\Code\RagePixelBasicFlash.shader" />
+     <None Include="Assets\RagePixel\Code\RagePixelBasic.shader" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">

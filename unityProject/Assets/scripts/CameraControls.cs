@@ -98,7 +98,20 @@ public class CameraControls : MonoBehaviour
 //				diff = 0;
 //			}
 			CameraObj.transform.Translate(new Vector3(0, 0.4f*diff, -0.6f*diff));
-		} else {
+		} else
+		if (Input.touchCount == 1) {
+						Touch t0 = Input.GetTouch (0);
+						float t0prev = t0.position.x - t0.deltaPosition.x;
+			if(t0prev>10)
+			{
+				t0prev = 10;
+			}
+			if(t0prev<-10)
+			{
+				t0prev = -10;
+			}
+						this.transform.position = new Vector3(transform.position.x -t0prev,transform.position.y,transform.position.z);
+		}else {
 			dist = 0;
 			old_dist = 0;
 		}
